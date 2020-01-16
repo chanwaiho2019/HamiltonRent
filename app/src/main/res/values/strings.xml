@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Hamilton Rent</string>
+    <string name="harcourts">Harcourts</string>
+    <string name="waikatoRealEstate">Waikato Real Estate</string>
+    <string name="lodge">Lodge</string>
+    <string name="rayWhite">RayWhite</string>
+    <string name="oneBedroom">1 bedroom</string>
+    <string name="twoBedroom">2 bedrooms</string>
+    <string name="threeBedroom">3 bedrooms</string>
+    <string name="fourBedroom">4 bedrooms</string>
+    <string name="fiveBedroom">5 bedrooms</string>
+</resources>
