@@ -4,10 +4,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class HarcourtsWebScraper {
@@ -20,15 +24,9 @@ public class HarcourtsWebScraper {
 
     /**
      * A method to get all the residential properties for rent from Harcourts website
-     * @return A list of residential properties.
-     *         It is a list of String[], in which the format is as follow:
-     *         String[0]: Title of the property
-     *         String[1]: Address of the property
-     *         String[2]: The rent(per week) of the property
-     *         String[3]: The number of bedrooms for rent
-     *         String[4]: The link for detail description of the property
+     * @return A list of Property objects.
      */
-    public List<String[]> getHamiltonRentResidentialData() {
+    public List<Property> getHamiltonRentResidentialData() {
         //Allow access the memory location of chrome driver
         System.setProperty("webdriver.chrome.driver", "app/libs/chromedriver");
 
@@ -52,7 +50,7 @@ public class HarcourtsWebScraper {
         String rent;
         String numOfBedroom;
         String link;
-        List<String[]> list = new ArrayList<>();
+        List<Property> list = new ArrayList<>();
 
         for (int i = 1; i <= numOfPages; i++){
             //Locate web elements
@@ -61,10 +59,12 @@ public class HarcourtsWebScraper {
                 title = we.findElement(By.cssSelector("a")).getText();
                 address = we.findElement(By.cssSelector("address")).getText();
                 rent = we.findElement(By.cssSelector("p span")).getText();
+                rent = rent.replaceAll("[^\\d]", "");
                 numOfBedroom = we.findElement(By.cssSelector("span.hc-text")).getText();
                 link = we.findElement(By.cssSelector("a")).getAttribute("href");
-                list.add(new String[]{title, address, rent, numOfBedroom, link});
-                //list.add(title + " " + address + " " + cost + " " + link);
+                //Create a Property object and add to the list
+//                Property property = new Property(title, address, rent, numOfBedroom, link);
+//                list.add(property);
             }
             //Locate the web element for the url of next page
             WebElement nextPage = driver.findElement(By.cssSelector("div.next-pagination a"));
@@ -104,10 +104,10 @@ public class HarcourtsWebScraper {
      * @param bedroomNum The number of bedrooms that you want to specify
      * @return The list of properties with the number of bedrooms that you specified
      */
-    public List<String[]> getByBedroomNum(List<String[]> list, int bedroomNum){
-        List<String[]> temp = new ArrayList<>();
-        for (String[] property : list){
-            if (Integer.parseInt(property[3]) == bedroomNum){
+    public List<Property> getByBedroomNum(List<Property> list, int bedroomNum){
+        List<Property> temp = new ArrayList<>();
+        for (Property property : list){
+            if (property.getNumBedroom() == bedroomNum){
                 temp.add(property);
             }
         }
@@ -116,13 +116,13 @@ public class HarcourtsWebScraper {
 
     public static void main(String[] args) {
         HarcourtsWebScraper lb = new HarcourtsWebScraper();
-        List<String[]> list = lb.getHamiltonRentResidentialData();
-        for (String[] s : list){
-            System.out.println(s[0]);
-            System.out.println(s[1]);
-            System.out.println(s[2]);
-            System.out.println("Number of bedrooms: " + s[3]);
-            System.out.println(s[4]);
+        List<Property> list = lb.getHamiltonRentResidentialData();
+        for (Property p : list){
+            System.out.println(p.getTitle());
+            System.out.println(p.getAddress());
+            System.out.println(p.getRent());
+            System.out.println("Number of bedrooms: " + p.getNumBedroom());
+            System.out.println(p.getlink());
             System.out.println("---------------");
         }
 

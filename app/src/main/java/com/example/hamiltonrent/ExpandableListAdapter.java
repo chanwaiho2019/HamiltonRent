@@ -93,7 +93,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 //The sublist of Harcourts is selected
                 if (getGroup(i).equals(context.getResources().getString(R.string.harcourts))) {
                     if (isOneBedroom(textViewItem)) {
-                        Toast.makeText(context, getGroup(i) + " : 1 bedroom clicked", Toast.LENGTH_SHORT).show();
+                        //Start the HarcourtsOneBedroom activity
+                        Intent intent = new Intent(context, HarcourtsOneBedroom.class);
+                        context.startActivity(intent);
                     } else if (isTwoBedrooms(textViewItem)) {
                         Toast.makeText(context, getGroup(i) + " : 2 bedrooms clicked", Toast.LENGTH_SHORT).show();
                     } else if (isThreeBedrooms(textViewItem)) {
