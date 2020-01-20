@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
 
-    tools:context=".HarcourtsOneBedroom">
+    tools:context=".HarcourtsByBedroom">
 
     <ListView
         android:id="@+id/listViewProperty"
