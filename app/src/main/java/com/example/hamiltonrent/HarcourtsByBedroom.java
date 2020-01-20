@@ -5,7 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import java.util.List;
 
@@ -14,13 +18,14 @@ public class HarcourtsByBedroom extends AppCompatActivity {
     private HarcourtsWebscraperUsingJsoup harcourtsWebscraperUsingJsoup;
     private List<Property> allResidentialProperties;
     private List<Property> propertiesByBedroomNum;
+    private List<Property> sortedList;
     private ListView listViewProperty;
     private String numBedroom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_harcourts_one_bedroom);
+        setContentView(R.layout.activity_harcourts_by_bedroom);
 
         //Get the string from previous intent
         Intent intent = getIntent();
@@ -34,6 +39,36 @@ public class HarcourtsByBedroom extends AppCompatActivity {
 
         //Execute the scraping process
         new doTheScraping().execute();
+
+        //Set the spinner
+        Spinner spinnerSort = findViewById(R.id.spinnerSort);
+        String[] items = new String[]{getResources().getString(R.string.lowToHigh),
+                getResources().getString(R.string.highToLow),
+                getResources().getString(R.string.sortByRent)};
+        HintAdapter adapter = new HintAdapter(this, R.layout.spinner_item, items);
+        spinnerSort.setAdapter(adapter);
+        //Set the last string of items as the initial text of spinner (as hint)
+        spinnerSort.setSelection(adapter.getCount());
+        //Set listener on spinner items
+        spinnerSort.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                String selectedItem = parent.getItemAtPosition(position).toString();
+                if(selectedItem.equals(getResources().getString(R.string.lowToHigh)))
+                {
+                    sortedList = harcourtsWebscraperUsingJsoup.sortByRentLowToHigh(propertiesByBedroomNum);
+                    PropertyListViewAdapter adapter = new PropertyListViewAdapter(HarcourtsByBedroom.this, sortedList);
+                    listViewProperty.setAdapter(adapter);
+                }
+                else if (selectedItem.equals(getResources().getString(R.string.highToLow))){
+                    sortedList = harcourtsWebscraperUsingJsoup.sortByRentHighToLow(propertiesByBedroomNum);
+                    PropertyListViewAdapter adapter = new PropertyListViewAdapter(HarcourtsByBedroom.this, sortedList);
+                    listViewProperty.setAdapter(adapter);
+                }
+            } // To close the onItemSelected
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
     }
 
     /**

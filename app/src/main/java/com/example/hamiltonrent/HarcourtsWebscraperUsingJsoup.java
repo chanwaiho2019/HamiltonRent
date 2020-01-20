@@ -5,6 +5,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class HarcourtsWebscraperUsingJsoup {
@@ -94,13 +97,13 @@ public class HarcourtsWebscraperUsingJsoup {
 
     /**
      * Get the list of properties by specified number of bedrooms
-     * @param list The full list of properties
+     * @param properties The full list of properties
      * @param bedroomNum The number of bedrooms that you want to specify
      * @return The list of properties with the number of bedrooms that you specified
      */
-    public List<Property> getByBedroomNum(List<Property> list, int bedroomNum){
+    public List<Property> getByBedroomNum(List<Property> properties, int bedroomNum){
         List<Property> temp = new ArrayList<>();
-        for (Property property : list){
+        for (Property property : properties){
             if (property.getNumBedroom() == bedroomNum){
                 temp.add(property);
             }
@@ -108,10 +111,51 @@ public class HarcourtsWebscraperUsingJsoup {
         return temp;
     }
 
+    /**
+     * Sort the list of properties from low to high rent.
+     * @param properties The list of properties to be sorted
+     * @return Sorted list
+     */
+    public List<Property> sortByRentLowToHigh(List<Property> properties){
+        Collections.sort(properties, new Comparator<Property>() {
+            @Override
+            public int compare(Property p1, Property p2) {
+                return Float.compare(p1.getRent(), p2.getRent());
+            }
+        });
+        return properties;
+    }
+
+    /**
+     * Sort the list of properties from High to low rent.
+     * @param properties The list of properties to be sorted
+     * @return Sorted list
+     */
+    public List<Property> sortByRentHighToLow(List<Property> properties){
+        List<Property> temp = new ArrayList<>();
+        //Sort the list from low to high rent
+        List<Property> lowToHighRent = sortByRentLowToHigh(properties);
+        //Reverse the list
+        for (int i = lowToHighRent.size() - 1; i >= 0; i--){
+            temp.add(lowToHighRent.get(i));
+        }
+       return temp;
+    }
+
 //    public static void main(String[] args){
 //        HarcourtsWebscraperUsingJsoup harcourtsWebscraperUsingJsoup = new HarcourtsWebscraperUsingJsoup();
 //        List<Property> list = harcourtsWebscraperUsingJsoup.getHamiltonRentResidentialData();
-//        for (Property p : list){
+//        List<Property> lowToHigh = harcourtsWebscraperUsingJsoup.sortByRentLowToHigh(list);
+//        List<Property> highToLow = harcourtsWebscraperUsingJsoup.sortByRentHighToLow(list);
+//        for (Property p : lowToHigh){
+//            System.out.println(p.getTitle());
+//            System.out.println(p.getAddress());
+//            System.out.println(p.getRent());
+//            System.out.println("Bedrooms: " + p.getNumBedroom() + "     Bathrooms: " + p.getNumBathroom() + "     Car space: " + p.getNumCarSpace());
+//            System.out.println(p.getlink());
+//            System.out.println("---------------");
+//        }
+//        for (Property p : highToLow){
 //            System.out.println(p.getTitle());
 //            System.out.println(p.getAddress());
 //            System.out.println(p.getRent());
