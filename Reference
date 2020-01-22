@@ -30,3 +30,9 @@ https://stackoverflow.com/questions/4540754/how-to-add-elements-to-a-listview-dy
 How to set up Selenium
 https://www.youtube.com/watch
 
+How to use Jsoup to submit post form data to the website (Can be used to access the next page in Waikato Real Estate)
+https://stackoverflow.com/questions/6432970/jsoup-posting-and-cookie
+
+How to make progress bar denoting loading (Used in Waikato Real Estate since it takes so long to get the data)
+https://stackoverflow.com/questions/18021148/display-a-loading-overlay-on-android-screen
+

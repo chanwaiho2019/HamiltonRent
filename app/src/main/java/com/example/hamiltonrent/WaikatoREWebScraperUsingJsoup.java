@@ -102,9 +102,9 @@ public class WaikatoREWebScraperUsingJsoup extends WebSraperUsingJsoup{
         return num;
     }
 
-    public static void main(String[] args){
-        WaikatoREWebScraperUsingJsoup waikatoREWebScraperUsingJsoup = new WaikatoREWebScraperUsingJsoup();
-        List<Property> list = waikatoREWebScraperUsingJsoup.getHamiltonRentResidentialData();
+//    public static void main(String[] args){
+//        WaikatoREWebScraperUsingJsoup waikatoREWebScraperUsingJsoup = new WaikatoREWebScraperUsingJsoup();
+//        List<Property> list = waikatoREWebScraperUsingJsoup.getHamiltonRentResidentialData();
 //        List<Property> lowToHigh = waikatoREWebScraperUsingJsoup.sortByRentLowToHigh(list);
 //        List<Property> highToLow = waikatoREWebScraperUsingJsoup.sortByRentHighToLow(list);
 //        for (Property p : lowToHigh){
@@ -123,14 +123,14 @@ public class WaikatoREWebScraperUsingJsoup extends WebSraperUsingJsoup{
 //            System.out.println(p.getlink());
 //            System.out.println("---------------");
 //        }
-        for (Property p : list){
-            System.out.println(p.getTitle());
-            System.out.println(p.getAddress());
-            System.out.println(p.getRent());
-            System.out.println("Bedrooms: " + p.getNumBedroom() + "     Bathrooms: " + p.getNumBathroom() + "     Car space: " + p.getNumCarSpace());
-            System.out.println(p.getlink());
-            System.out.println("---------------");
-        }
-        System.out.println(list.size());
-    }
+//        for (Property p : list){
+//            System.out.println(p.getTitle());
+//            System.out.println(p.getAddress());
+//            System.out.println(p.getRent());
+//            System.out.println("Bedrooms: " + p.getNumBedroom() + "     Bathrooms: " + p.getNumBathroom() + "     Car space: " + p.getNumCarSpace());
+//            System.out.println(p.getlink());
+//            System.out.println("---------------");
+//        }
+//        System.out.println(list.size());
+//    }
 }

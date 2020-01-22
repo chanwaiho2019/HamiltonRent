@@ -95,17 +95,10 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 }
                 //The sublist of Waikato Real Estate is selected
                 else if (getGroup(i).equals(context.getResources().getString(R.string.waikatoRealEstate))){
-//                    if (isOneBedroom(textViewItem)) {
-//                        Toast.makeText(context, getGroup(i) + " : 1 bedroom clicked", Toast.LENGTH_SHORT).show();
-//                    } else if (isTwoBedrooms(textViewItem)) {
-//                        Toast.makeText(context, getGroup(i) + " : 2 bedrooms clicked", Toast.LENGTH_SHORT).show();
-//                    } else if (isThreeBedrooms(textViewItem)) {
-//                        Toast.makeText(context, getGroup(i) + " : 3 bedrooms clicked", Toast.LENGTH_SHORT).show();
-//                    } else if (isFourBedrooms(textViewItem)) {
-//                        Toast.makeText(context, getGroup(i) + " : 4 bedrooms clicked", Toast.LENGTH_SHORT).show();
-//                    } else if (isFiveBedrooms(textViewItem)) {
-//                        Toast.makeText(context, getGroup(i) + " : 5 bedrooms clicked", Toast.LENGTH_SHORT).show();
-//                    }
+                    //Pass the text of textView being clicked to the new activity
+                    Intent intent = new Intent(context, WaikatoREByBedroom.class);
+                    intent.putExtra("numBedroom", (String) getChild(i, i1));
+                    context.startActivity(intent);
                 }
                 //The sublist of Lodge is selected
                 else if (getGroup(i).equals(context.getResources().getString(R.string.lodge))){
