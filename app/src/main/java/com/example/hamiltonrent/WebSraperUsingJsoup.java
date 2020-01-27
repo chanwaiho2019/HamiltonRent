@@ -14,13 +14,6 @@ public abstract class WebSraperUsingJsoup {
     public abstract List<Property> getHamiltonRentResidentialData();
 
     /**
-     * A method to find the number of pages to scrape
-     * @param url The url to scrape
-     * @return The number of pages
-     */
-    public abstract int findNumberOfPages(String url);
-
-    /**
      * Get the list of properties by specified number of bedrooms
      * @param properties The full list of properties
      * @param bedroomNum The number of bedrooms that you want to specify
