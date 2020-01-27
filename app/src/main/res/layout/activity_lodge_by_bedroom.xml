@@ -5,16 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".HarcourtsByBedroom">
+    tools:context=".LodgeByBedroom">
 
     <Spinner
-        android:id="@+id/spinnerSortHarcourts"
+        android:id="@+id/spinnerSortLodge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:spinnerMode="dropdown"></Spinner>
 
     <FrameLayout
-        android:id="@+id/progressBarHolderHarcourts"
+        android:id="@+id/progressBarHolderLodge"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha="0.4"
@@ -32,7 +32,7 @@
     </FrameLayout>
 
     <ListView
-        android:id="@+id/listViewPropertyHarcourts"
+        android:id="@+id/listViewPropertyLodge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

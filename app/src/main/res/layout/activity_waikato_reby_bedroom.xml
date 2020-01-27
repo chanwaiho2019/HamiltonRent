@@ -14,7 +14,7 @@
         android:spinnerMode="dropdown"></Spinner>
 
     <FrameLayout
-        android:id="@+id/progressBarHolder"
+        android:id="@+id/progressBarHolderWaikatoRE"
         android:animateLayoutChanges="true"
         android:visibility="gone"
         android:alpha="0.4"

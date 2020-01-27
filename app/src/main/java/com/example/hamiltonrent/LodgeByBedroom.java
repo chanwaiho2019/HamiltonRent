@@ -8,16 +8,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 
 import java.util.List;
 
-public class HarcourtsByBedroom extends AppCompatActivity {
+public class LodgeByBedroom extends AppCompatActivity {
 
-    private HarcourtsWebscraperUsingJsoup harcourtsWebscraperUsingJsoup;
+    private LodgeWebScraperUsingJsoup lodgeWebScraperUsingJsoup;
     private List<Property> allResidentialProperties;
     private List<Property> propertiesByBedroomNum;
     private List<Property> sortedList;
@@ -26,29 +25,30 @@ public class HarcourtsByBedroom extends AppCompatActivity {
     private AlphaAnimation animation;
     private FrameLayout progressBarHolder;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_harcourts_by_bedroom);
+        setContentView(R.layout.activity_lodge_by_bedroom);
 
         //Initialize a progressBarHolder
-        progressBarHolder = findViewById(R.id.progressBarHolderHarcourts);
+        progressBarHolder = findViewById(R.id.progressBarHolderLodge);
 
         //Get the string from previous intent
         Intent intent = getIntent();
         numBedroom = intent.getStringExtra("numBedroom");
 
         //Set title of activity
-        setTitle("Harcourts " + "(" + numBedroom + ")");
+        setTitle("Lodge " + "(" + numBedroom + ")");
 
         //Initialize the textView object
-        listViewProperty = findViewById(R.id.listViewPropertyHarcourts);
+        listViewProperty = findViewById(R.id.listViewPropertyLodge);
 
         //Execute the scraping process
-        new doTheScraping().execute();
+        new LodgeByBedroom.doTheScraping().execute();
 
         //Set the spinner
-        Spinner spinnerSort = findViewById(R.id.spinnerSortHarcourts);
+        Spinner spinnerSort = findViewById(R.id.spinnerSortLodge);
         String[] items = new String[]{getResources().getString(R.string.lowToHigh),
                 getResources().getString(R.string.highToLow),
                 getResources().getString(R.string.sortByRent)};
@@ -64,13 +64,13 @@ public class HarcourtsByBedroom extends AppCompatActivity {
                 String selectedItem = parent.getItemAtPosition(position).toString();
                 if(selectedItem.equals(getResources().getString(R.string.lowToHigh)))
                 {
-                    sortedList = harcourtsWebscraperUsingJsoup.sortByRentLowToHigh(propertiesByBedroomNum);
-                    PropertyListViewAdapter adapter = new PropertyListViewAdapter(HarcourtsByBedroom.this, sortedList);
+                    sortedList = lodgeWebScraperUsingJsoup.sortByRentLowToHigh(propertiesByBedroomNum);
+                    PropertyListViewAdapter adapter = new PropertyListViewAdapter(LodgeByBedroom.this, sortedList);
                     listViewProperty.setAdapter(adapter);
                 }
                 else if (selectedItem.equals(getResources().getString(R.string.highToLow))){
-                    sortedList = harcourtsWebscraperUsingJsoup.sortByRentHighToLow(propertiesByBedroomNum);
-                    PropertyListViewAdapter adapter = new PropertyListViewAdapter(HarcourtsByBedroom.this, sortedList);
+                    sortedList = lodgeWebScraperUsingJsoup.sortByRentHighToLow(propertiesByBedroomNum);
+                    PropertyListViewAdapter adapter = new PropertyListViewAdapter(LodgeByBedroom.this, sortedList);
                     listViewProperty.setAdapter(adapter);
                 }
             } // To close the onItemSelected
@@ -81,7 +81,7 @@ public class HarcourtsByBedroom extends AppCompatActivity {
     /**
      * A class for doing the web scraping in the background
      */
-    public class doTheScraping extends AsyncTask<Void, Void, List<Property>>{
+    public class doTheScraping extends AsyncTask<Void, Void, List<Property>> {
 
         @Override
         protected void onPreExecute() {
@@ -97,26 +97,26 @@ public class HarcourtsByBedroom extends AppCompatActivity {
         @Override
         protected List<Property> doInBackground(Void... voids) {
             try {
-                //Initialize a HarcourtsWebScraperUsingJsoup object
-                harcourtsWebscraperUsingJsoup = new HarcourtsWebscraperUsingJsoup();
+                //Initialize a LodgeWebScraperUsingJsoup object
+                lodgeWebScraperUsingJsoup = new LodgeWebScraperUsingJsoup();
                 //Get the list of all properties
-                allResidentialProperties = harcourtsWebscraperUsingJsoup.getHamiltonRentResidentialData();
+                allResidentialProperties = lodgeWebScraperUsingJsoup.getHamiltonRentResidentialData();
 
                 //Get the corresponding data according to the numBedroom category selected by user
                 if (numBedroom.equals(getResources().getString(R.string.oneBedroom))){
-                    propertiesByBedroomNum = harcourtsWebscraperUsingJsoup.getByBedroomNum(allResidentialProperties, 1);
+                    propertiesByBedroomNum = lodgeWebScraperUsingJsoup.getByBedroomNum(allResidentialProperties, 1);
                 }
                 else if (numBedroom.equals(getResources().getString(R.string.twoBedroom))){
-                    propertiesByBedroomNum = harcourtsWebscraperUsingJsoup.getByBedroomNum(allResidentialProperties, 2);
+                    propertiesByBedroomNum = lodgeWebScraperUsingJsoup.getByBedroomNum(allResidentialProperties, 2);
                 }
                 else if (numBedroom.equals(getResources().getString(R.string.threeBedroom))){
-                    propertiesByBedroomNum = harcourtsWebscraperUsingJsoup.getByBedroomNum(allResidentialProperties, 3);
+                    propertiesByBedroomNum = lodgeWebScraperUsingJsoup.getByBedroomNum(allResidentialProperties, 3);
                 }
                 else if (numBedroom.equals(getResources().getString(R.string.fourBedroom))){
-                    propertiesByBedroomNum = harcourtsWebscraperUsingJsoup.getByBedroomNum(allResidentialProperties, 4);
+                    propertiesByBedroomNum = lodgeWebScraperUsingJsoup.getByBedroomNum(allResidentialProperties, 4);
                 }
                 else if (numBedroom.equals(getResources().getString(R.string.fiveBedroomOrMore))){
-                    propertiesByBedroomNum = harcourtsWebscraperUsingJsoup.getByBedroomNum(allResidentialProperties, 5);
+                    propertiesByBedroomNum = lodgeWebScraperUsingJsoup.getByBedroomNum(allResidentialProperties, 5);
                 }
             }
             catch (Exception e) {
@@ -133,7 +133,7 @@ public class HarcourtsByBedroom extends AppCompatActivity {
             progressBarHolder.setVisibility(View.GONE);
 
             //Use adapter to connect the listView and my list
-            PropertyListViewAdapter adapter = new PropertyListViewAdapter(HarcourtsByBedroom.this, propertiesByBedroomNum);
+            PropertyListViewAdapter adapter = new PropertyListViewAdapter(LodgeByBedroom.this, propertiesByBedroomNum);
             listViewProperty.setAdapter(adapter);
         }
     }

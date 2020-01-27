@@ -66,7 +66,6 @@ public class LodgeWebScraperUsingJsoup  extends WebSraperUsingJsoup{
                 if (nextPage != null){
                     //Get the url of next page
                     String nextURL = nextPage.attr("abs:href");
-                    //System.out.println(nextURL);
                     //Navigate to the next page
                     document = Jsoup.connect(nextURL).userAgent(
                             "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) " +

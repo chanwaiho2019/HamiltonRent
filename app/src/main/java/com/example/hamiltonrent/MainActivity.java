@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         harcourtsList.add(getResources().getString(R.string.twoBedroom));
         harcourtsList.add(getResources().getString(R.string.threeBedroom));
         harcourtsList.add(getResources().getString(R.string.fourBedroom));
-        harcourtsList.add(getResources().getString(R.string.fiveBedroom));
+        harcourtsList.add(getResources().getString(R.string.fiveBedroomOrMore));
 
         //List of items in Waikato Real Estate category
         List<String> waikatoREList = new ArrayList<>();
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         waikatoREList.add(getResources().getString(R.string.twoBedroom));
         waikatoREList.add(getResources().getString(R.string.threeBedroom));
         waikatoREList.add(getResources().getString(R.string.fourBedroom));
-        waikatoREList.add(getResources().getString(R.string.fiveBedroom));
+        waikatoREList.add(getResources().getString(R.string.fiveBedroomOrMore));
 
         //List of items in Lodge category
         List<String> lodgeList = new ArrayList<>();
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         lodgeList.add(getResources().getString(R.string.twoBedroom));
         lodgeList.add(getResources().getString(R.string.threeBedroom));
         lodgeList.add(getResources().getString(R.string.fourBedroom));
-        lodgeList.add(getResources().getString(R.string.fiveBedroom));
+        lodgeList.add(getResources().getString(R.string.fiveBedroomOrMore));
 
         //List of items in RayWhite category
         List<String> rayWhiteList = new ArrayList<>();
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         rayWhiteList.add(getResources().getString(R.string.twoBedroom));
         rayWhiteList.add(getResources().getString(R.string.threeBedroom));
         rayWhiteList.add(getResources().getString(R.string.fourBedroom));
-        rayWhiteList.add(getResources().getString(R.string.fiveBedroom));
+        rayWhiteList.add(getResources().getString(R.string.fiveBedroomOrMore));
 
         //Map the category(key) and corresponding sublist(value) into the hash map
         listHashMap.put(listDataHeader.get(0), harcourtsList);

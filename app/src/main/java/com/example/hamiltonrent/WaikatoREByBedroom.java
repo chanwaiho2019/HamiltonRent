@@ -22,7 +22,7 @@ public class WaikatoREByBedroom extends AppCompatActivity {
     private List<Property> sortedList;
     private ListView listViewProperty;
     private String numBedroom;
-    private AlphaAnimation inAnimation;
+    private AlphaAnimation animation;
     private FrameLayout progressBarHolder;
 
 
@@ -32,14 +32,14 @@ public class WaikatoREByBedroom extends AppCompatActivity {
         setContentView(R.layout.activity_waikato_reby_bedroom);
 
         //Initialize a progressBarHolder
-        progressBarHolder = findViewById(R.id.progressBarHolder);
+        progressBarHolder = findViewById(R.id.progressBarHolderWaikatoRE);
 
         //Get the string from previous intent
         Intent intent = getIntent();
         numBedroom = intent.getStringExtra("numBedroom");
 
         //Set title of activity
-        setTitle("Waikato Real Estate " + "(" + numBedroom + ")");
+        setTitle("Waikato R.E. " + "(" + numBedroom + ")");
 
         //Initialize the textView object
         listViewProperty = findViewById(R.id.listViewPropertyWaikatoRE);
@@ -88,9 +88,9 @@ public class WaikatoREByBedroom extends AppCompatActivity {
             super.onPreExecute();
 
             //Set the loading animation
-            inAnimation = new AlphaAnimation(0f, 1f);
-            inAnimation.setDuration(200);
-            progressBarHolder.setAnimation(inAnimation);
+            animation = new AlphaAnimation(0f, 1f);
+            animation.setDuration(200);
+            progressBarHolder.setAnimation(animation);
             progressBarHolder.setVisibility(View.VISIBLE);
         }
 
@@ -115,7 +115,7 @@ public class WaikatoREByBedroom extends AppCompatActivity {
                 else if (numBedroom.equals(getResources().getString(R.string.fourBedroom))){
                     propertiesByBedroomNum = waikatoREWebScraperUsingJsoup.getByBedroomNum(allResidentialProperties, 4);
                 }
-                else if (numBedroom.equals(getResources().getString(R.string.fiveBedroom))){
+                else if (numBedroom.equals(getResources().getString(R.string.fiveBedroomOrMore))){
                     propertiesByBedroomNum = waikatoREWebScraperUsingJsoup.getByBedroomNum(allResidentialProperties, 5);
                 }
             }

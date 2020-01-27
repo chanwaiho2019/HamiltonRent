@@ -8,7 +8,7 @@
     <string name="twoBedroom">2 bedrooms</string>
     <string name="threeBedroom">3 bedrooms</string>
     <string name="fourBedroom">4 bedrooms</string>
-    <string name="fiveBedroom">5 bedrooms</string>
+    <string name="fiveBedroomOrMore">5 bedrooms or more</string>
     <string name="lowToHigh">Low to high</string>
     <string name="highToLow">High to low</string>
     <string name="sortByRent">Sort by rent</string>

@@ -21,9 +21,18 @@ public abstract class WebSraperUsingJsoup {
      */
     public List<Property> getByBedroomNum(List<Property> properties, int bedroomNum){
         List<Property> temp = new ArrayList<>();
-        for (Property property : properties){
-            if (property.getNumBedroom() == bedroomNum){
-                temp.add(property);
+        if (bedroomNum < 5){
+            for (Property property : properties){
+                if (property.getNumBedroom() == bedroomNum){
+                    temp.add(property);
+                }
+            }
+        }
+        else{
+            for (Property property : properties){
+                if (property.getNumBedroom() >= bedroomNum){
+                    temp.add(property);
+                }
             }
         }
         return temp;
