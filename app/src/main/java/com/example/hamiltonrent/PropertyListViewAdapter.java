@@ -7,7 +7,10 @@ import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -29,6 +32,7 @@ public class PropertyListViewAdapter extends ArrayAdapter<Property> {
             viewHolder = (ViewHolder) view.getTag();
         }
 
+        Picasso.get().load(getItem(position).getImageURL()).resize(600, 500).into(viewHolder.image);
         viewHolder.title.setText(getItem(position).getTitle());
         viewHolder.address.setText(getItem(position).getAddress());
         viewHolder.rent.setText("$" + getItem(position).getRent() + " p.w.");
@@ -42,6 +46,7 @@ public class PropertyListViewAdapter extends ArrayAdapter<Property> {
 
     private class ViewHolder {
 
+        public ImageView image;
         public TextView title;
         public TextView address;
         public TextView rent;
@@ -49,6 +54,7 @@ public class PropertyListViewAdapter extends ArrayAdapter<Property> {
         public TextView link;
 
         public void setView(View view) {
+            image = view.findViewById(R.id.imageViewProperty);
             title = view.findViewById(R.id.textViewTitle);
             address = view.findViewById(R.id.textViewAddress);
             rent = view.findViewById(R.id.textViewRent);

@@ -12,4 +12,5 @@
     <string name="lowToHigh">Low to high</string>
     <string name="highToLow">High to low</string>
     <string name="sortByRent">Sort by rent</string>
+    <string name="propertyImage">Image of property</string>
 </resources>

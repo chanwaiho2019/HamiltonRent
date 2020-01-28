@@ -33,6 +33,7 @@ public class HarcourtsWebscraperUsingJsoup extends WebSraperUsingJsoup{
             //System.out.println(document.outerHtml());   //for testing
 
             //Variables to store the data of property
+            String imageURL;
             String title;
             String address;
             String rent;
@@ -45,7 +46,8 @@ public class HarcourtsWebscraperUsingJsoup extends WebSraperUsingJsoup{
             int numOfPages = findNumberOfPages(url);
             for (int i = 1; i <= numOfPages; i++) {
                 //Loop through the elements
-                for (Element e : document.select("div.search-item-content")) {
+                for (Element e : document.select("div.search-item-container")) {
+                    imageURL = e.select("div.swiper-lazy").attr("data-background");
                     title = e.select("a").text();
                     address = e.select("address").text();
                     rent = e.select("p span").text();
@@ -64,7 +66,7 @@ public class HarcourtsWebscraperUsingJsoup extends WebSraperUsingJsoup{
                     link = e.select("h2 a").attr("abs:href");
 
                     //Add the data to the list
-                    Property property = new Property(title, address, rent, numBedroom, numBathroom, numCarSpace, link);
+                    Property property = new Property(imageURL, title, address, rent, numBedroom, numBathroom, numCarSpace, link);
                     data.add(property);
                 }
                 Element nextPage = document.select("div.next-pagination a").first();
@@ -107,9 +109,10 @@ public class HarcourtsWebscraperUsingJsoup extends WebSraperUsingJsoup{
 //    public static void main(String[] args){
 //        HarcourtsWebscraperUsingJsoup harcourtsWebscraperUsingJsoup = new HarcourtsWebscraperUsingJsoup();
 //        List<Property> list = harcourtsWebscraperUsingJsoup.getHamiltonRentResidentialData();
-//        List<Property> lowToHigh = harcourtsWebscraperUsingJsoup.sortByRentLowToHigh(list);
-//        List<Property> highToLow = harcourtsWebscraperUsingJsoup.sortByRentHighToLow(list);
-//        for (Property p : lowToHigh){
+////        List<Property> lowToHigh = harcourtsWebscraperUsingJsoup.sortByRentLowToHigh(list);
+////        List<Property> highToLow = harcourtsWebscraperUsingJsoup.sortByRentHighToLow(list);
+//        for (Property p : list){
+//            System.out.println(p.getImageURL());
 //            System.out.println(p.getTitle());
 //            System.out.println(p.getAddress());
 //            System.out.println(p.getRent());
@@ -117,13 +120,21 @@ public class HarcourtsWebscraperUsingJsoup extends WebSraperUsingJsoup{
 //            System.out.println(p.getlink());
 //            System.out.println("---------------");
 //        }
-//        for (Property p : highToLow){
-//            System.out.println(p.getTitle());
-//            System.out.println(p.getAddress());
-//            System.out.println(p.getRent());
-//            System.out.println("Bedrooms: " + p.getNumBedroom() + "     Bathrooms: " + p.getNumBathroom() + "     Car space: " + p.getNumCarSpace());
-//            System.out.println(p.getlink());
-//            System.out.println("---------------");
-//        }
+////        for (Property p : lowToHigh){
+////            System.out.println(p.getTitle());
+////            System.out.println(p.getAddress());
+////            System.out.println(p.getRent());
+////            System.out.println("Bedrooms: " + p.getNumBedroom() + "     Bathrooms: " + p.getNumBathroom() + "     Car space: " + p.getNumCarSpace());
+////            System.out.println(p.getlink());
+////            System.out.println("---------------");
+////        }
+////        for (Property p : highToLow){
+////            System.out.println(p.getTitle());
+////            System.out.println(p.getAddress());
+////            System.out.println(p.getRent());
+////            System.out.println("Bedrooms: " + p.getNumBedroom() + "     Bathrooms: " + p.getNumBathroom() + "     Car space: " + p.getNumCarSpace());
+////            System.out.println(p.getlink());
+////            System.out.println("---------------");
+////        }
 //    }
 }

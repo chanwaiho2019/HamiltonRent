@@ -2,6 +2,7 @@ package com.example.hamiltonrent;
 
 public class Property {
 
+    private  String imageURL;
     private String title;
     private String address;
     private float rent;
@@ -17,7 +18,8 @@ public class Property {
      * @param rent The rent of property
      * @param link The link for detail description of property
      */
-    public Property(String title, String address, String rent, String numBedroom, String numBathroom, String numCarSpace, String link){
+    public Property(String imageURL, String title, String address, String rent, String numBedroom, String numBathroom, String numCarSpace, String link){
+        this.imageURL = imageURL;
         this.title = title;
         this.address = address;
         this.rent = Float.parseFloat(rent);
@@ -25,6 +27,14 @@ public class Property {
         this.numBathroom = Integer.parseInt(numBathroom);
         this.numCarSpace = Integer.parseInt(numCarSpace);
         this.link = link;
+    }
+
+    /**
+     * Get the image URL of property
+     * @return The image URL of property
+     */
+    public String getImageURL(){
+        return this.imageURL;
     }
 
     /**

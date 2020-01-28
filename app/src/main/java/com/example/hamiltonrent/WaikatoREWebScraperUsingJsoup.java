@@ -68,7 +68,7 @@ public class WaikatoREWebScraperUsingJsoup extends WebSraperUsingJsoup{
                     address = elTemp.select("p.description").text();
 
                     //Add the data to the list
-                    Property property = new Property(title, address, rent, numBedroom, numBathroom, numCarSpace, link);
+                    Property property = new Property(" ", title, address, rent, numBedroom, numBathroom, numCarSpace, link);
                     data.add(property);
                 }
                 //Proceed to the next page
