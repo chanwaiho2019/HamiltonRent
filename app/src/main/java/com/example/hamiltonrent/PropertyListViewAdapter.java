@@ -32,7 +32,7 @@ public class PropertyListViewAdapter extends ArrayAdapter<Property> {
             viewHolder = (ViewHolder) view.getTag();
         }
 
-        Picasso.get().load(getItem(position).getImageURL()).resize(600, 500).into(viewHolder.image);
+        Picasso.get().load(getItem(position).getImageURL()).resize(600, 400).into(viewHolder.image);
         viewHolder.title.setText(getItem(position).getTitle());
         viewHolder.address.setText(getItem(position).getAddress());
         viewHolder.rent.setText("$" + getItem(position).getRent() + " p.w.");
