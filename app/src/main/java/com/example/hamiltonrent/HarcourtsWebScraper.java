@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class HarcourtsWebscraperUsingJsoup extends WebSraperUsingJsoup{
+public class HarcourtsWebScraper extends WebSraperUsingJsoup{
 
     private static Document document;
     //The url of the website that we want to scrape
@@ -107,7 +107,7 @@ public class HarcourtsWebscraperUsingJsoup extends WebSraperUsingJsoup{
 
 
 //    public static void main(String[] args){
-//        HarcourtsWebscraperUsingJsoup harcourtsWebscraperUsingJsoup = new HarcourtsWebscraperUsingJsoup();
+//        HarcourtsWebScraper harcourtsWebscraperUsingJsoup = new HarcourtsWebScraper();
 //        List<Property> list = harcourtsWebscraperUsingJsoup.getHamiltonRentResidentialData();
 ////        List<Property> lowToHigh = harcourtsWebscraperUsingJsoup.sortByRentLowToHigh(list);
 ////        List<Property> highToLow = harcourtsWebscraperUsingJsoup.sortByRentHighToLow(list);

@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class WaikatoREWebScraperUsingJsoup extends WebSraperUsingJsoup{
+public class WaikatoREWebScraper extends WebSraperUsingJsoup{
     private static Document document;
     //The url of the website that we want to scrape
     private static final String url = "https://www.wre.co.nz/shop/Property+Listings/x_cat/00319.html";
@@ -105,7 +105,7 @@ public class WaikatoREWebScraperUsingJsoup extends WebSraperUsingJsoup{
     }
 
 //    public static void main(String[] args){
-//        WaikatoREWebScraperUsingJsoup waikatoREWebScraperUsingJsoup = new WaikatoREWebScraperUsingJsoup();
+//        WaikatoREWebScraper waikatoREWebScraperUsingJsoup = new WaikatoREWebScraper();
 //        List<Property> list = waikatoREWebScraperUsingJsoup.getHamiltonRentResidentialData();
 ////        List<Property> lowToHigh = waikatoREWebScraperUsingJsoup.sortByRentLowToHigh(list);
 ////        List<Property> highToLow = waikatoREWebScraperUsingJsoup.sortByRentHighToLow(list);

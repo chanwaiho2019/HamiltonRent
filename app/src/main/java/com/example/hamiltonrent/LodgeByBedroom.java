@@ -16,7 +16,7 @@ import java.util.List;
 
 public class LodgeByBedroom extends AppCompatActivity {
 
-    private LodgeWebScraperUsingJsoup lodgeWebScraperUsingJsoup;
+    private LodgeWebScraper lodgeWebScraper;
     private List<Property> allResidentialProperties;
     private List<Property> propertiesByBedroomNum;
     private List<Property> sortedList;
@@ -64,12 +64,12 @@ public class LodgeByBedroom extends AppCompatActivity {
                 String selectedItem = parent.getItemAtPosition(position).toString();
                 if(selectedItem.equals(getResources().getString(R.string.lowToHigh)))
                 {
-                    sortedList = lodgeWebScraperUsingJsoup.sortByRentLowToHigh(propertiesByBedroomNum);
+                    sortedList = lodgeWebScraper.sortByRentLowToHigh(propertiesByBedroomNum);
                     PropertyListViewAdapter adapter = new PropertyListViewAdapter(LodgeByBedroom.this, sortedList);
                     listViewProperty.setAdapter(adapter);
                 }
                 else if (selectedItem.equals(getResources().getString(R.string.highToLow))){
-                    sortedList = lodgeWebScraperUsingJsoup.sortByRentHighToLow(propertiesByBedroomNum);
+                    sortedList = lodgeWebScraper.sortByRentHighToLow(propertiesByBedroomNum);
                     PropertyListViewAdapter adapter = new PropertyListViewAdapter(LodgeByBedroom.this, sortedList);
                     listViewProperty.setAdapter(adapter);
                 }
@@ -97,26 +97,26 @@ public class LodgeByBedroom extends AppCompatActivity {
         @Override
         protected List<Property> doInBackground(Void... voids) {
             try {
-                //Initialize a LodgeWebScraperUsingJsoup object
-                lodgeWebScraperUsingJsoup = new LodgeWebScraperUsingJsoup();
+                //Initialize a LodgeWebScraper object
+                lodgeWebScraper = new LodgeWebScraper();
                 //Get the list of all properties
-                allResidentialProperties = lodgeWebScraperUsingJsoup.getHamiltonRentResidentialData();
+                allResidentialProperties = lodgeWebScraper.getHamiltonRentResidentialData();
 
                 //Get the corresponding data according to the numBedroom category selected by user
                 if (numBedroom.equals(getResources().getString(R.string.oneBedroom))){
-                    propertiesByBedroomNum = lodgeWebScraperUsingJsoup.getByBedroomNum(allResidentialProperties, 1);
+                    propertiesByBedroomNum = lodgeWebScraper.getByBedroomNum(allResidentialProperties, 1);
                 }
                 else if (numBedroom.equals(getResources().getString(R.string.twoBedroom))){
-                    propertiesByBedroomNum = lodgeWebScraperUsingJsoup.getByBedroomNum(allResidentialProperties, 2);
+                    propertiesByBedroomNum = lodgeWebScraper.getByBedroomNum(allResidentialProperties, 2);
                 }
                 else if (numBedroom.equals(getResources().getString(R.string.threeBedroom))){
-                    propertiesByBedroomNum = lodgeWebScraperUsingJsoup.getByBedroomNum(allResidentialProperties, 3);
+                    propertiesByBedroomNum = lodgeWebScraper.getByBedroomNum(allResidentialProperties, 3);
                 }
                 else if (numBedroom.equals(getResources().getString(R.string.fourBedroom))){
-                    propertiesByBedroomNum = lodgeWebScraperUsingJsoup.getByBedroomNum(allResidentialProperties, 4);
+                    propertiesByBedroomNum = lodgeWebScraper.getByBedroomNum(allResidentialProperties, 4);
                 }
                 else if (numBedroom.equals(getResources().getString(R.string.fiveBedroomOrMore))){
-                    propertiesByBedroomNum = lodgeWebScraperUsingJsoup.getByBedroomNum(allResidentialProperties, 5);
+                    propertiesByBedroomNum = lodgeWebScraper.getByBedroomNum(allResidentialProperties, 5);
                 }
             }
             catch (Exception e) {

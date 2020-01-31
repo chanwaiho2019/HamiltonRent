@@ -7,7 +7,7 @@ import org.jsoup.nodes.Element;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LodgeWebScraperUsingJsoup  extends WebSraperUsingJsoup{
+public class LodgeWebScraper extends WebSraperUsingJsoup{
 
     private static Document document;
     //The url of the website that we want to scrape
@@ -88,7 +88,7 @@ public class LodgeWebScraperUsingJsoup  extends WebSraperUsingJsoup{
     }
 
 //    public static void main(String[] args){
-//        LodgeWebScraperUsingJsoup lodgeWebScraperUsingJsoup = new LodgeWebScraperUsingJsoup();
+//        LodgeWebScraper lodgeWebScraperUsingJsoup = new LodgeWebScraper();
 //        List<Property> list = lodgeWebScraperUsingJsoup.getHamiltonRentResidentialData();
 ////        List<Property> lowToHigh = lodgeWebScraperUsingJsoup.sortByRentLowToHigh(list);
 ////        List<Property> highToLow = lodgeWebScraperUsingJsoup.sortByRentHighToLow(list);

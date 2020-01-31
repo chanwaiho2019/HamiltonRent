@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -17,7 +16,7 @@ import java.util.List;
 
 public class HarcourtsByBedroom extends AppCompatActivity {
 
-    private HarcourtsWebscraperUsingJsoup harcourtsWebscraperUsingJsoup;
+    private HarcourtsWebScraper harcourtsWebScraper;
     private List<Property> allResidentialProperties;
     private List<Property> propertiesByBedroomNum;
     private List<Property> sortedList;
@@ -64,12 +63,12 @@ public class HarcourtsByBedroom extends AppCompatActivity {
                 String selectedItem = parent.getItemAtPosition(position).toString();
                 if(selectedItem.equals(getResources().getString(R.string.lowToHigh)))
                 {
-                    sortedList = harcourtsWebscraperUsingJsoup.sortByRentLowToHigh(propertiesByBedroomNum);
+                    sortedList = harcourtsWebScraper.sortByRentLowToHigh(propertiesByBedroomNum);
                     PropertyListViewAdapter adapter = new PropertyListViewAdapter(HarcourtsByBedroom.this, sortedList);
                     listViewProperty.setAdapter(adapter);
                 }
                 else if (selectedItem.equals(getResources().getString(R.string.highToLow))){
-                    sortedList = harcourtsWebscraperUsingJsoup.sortByRentHighToLow(propertiesByBedroomNum);
+                    sortedList = harcourtsWebScraper.sortByRentHighToLow(propertiesByBedroomNum);
                     PropertyListViewAdapter adapter = new PropertyListViewAdapter(HarcourtsByBedroom.this, sortedList);
                     listViewProperty.setAdapter(adapter);
                 }
@@ -98,25 +97,25 @@ public class HarcourtsByBedroom extends AppCompatActivity {
         protected List<Property> doInBackground(Void... voids) {
             try {
                 //Initialize a HarcourtsWebScraperUsingJsoup object
-                harcourtsWebscraperUsingJsoup = new HarcourtsWebscraperUsingJsoup();
+                harcourtsWebScraper = new HarcourtsWebScraper();
                 //Get the list of all properties
-                allResidentialProperties = harcourtsWebscraperUsingJsoup.getHamiltonRentResidentialData();
+                allResidentialProperties = harcourtsWebScraper.getHamiltonRentResidentialData();
 
                 //Get the corresponding data according to the numBedroom category selected by user
                 if (numBedroom.equals(getResources().getString(R.string.oneBedroom))){
-                    propertiesByBedroomNum = harcourtsWebscraperUsingJsoup.getByBedroomNum(allResidentialProperties, 1);
+                    propertiesByBedroomNum = harcourtsWebScraper.getByBedroomNum(allResidentialProperties, 1);
                 }
                 else if (numBedroom.equals(getResources().getString(R.string.twoBedroom))){
-                    propertiesByBedroomNum = harcourtsWebscraperUsingJsoup.getByBedroomNum(allResidentialProperties, 2);
+                    propertiesByBedroomNum = harcourtsWebScraper.getByBedroomNum(allResidentialProperties, 2);
                 }
                 else if (numBedroom.equals(getResources().getString(R.string.threeBedroom))){
-                    propertiesByBedroomNum = harcourtsWebscraperUsingJsoup.getByBedroomNum(allResidentialProperties, 3);
+                    propertiesByBedroomNum = harcourtsWebScraper.getByBedroomNum(allResidentialProperties, 3);
                 }
                 else if (numBedroom.equals(getResources().getString(R.string.fourBedroom))){
-                    propertiesByBedroomNum = harcourtsWebscraperUsingJsoup.getByBedroomNum(allResidentialProperties, 4);
+                    propertiesByBedroomNum = harcourtsWebScraper.getByBedroomNum(allResidentialProperties, 4);
                 }
                 else if (numBedroom.equals(getResources().getString(R.string.fiveBedroomOrMore))){
-                    propertiesByBedroomNum = harcourtsWebscraperUsingJsoup.getByBedroomNum(allResidentialProperties, 5);
+                    propertiesByBedroomNum = harcourtsWebScraper.getByBedroomNum(allResidentialProperties, 5);
                 }
             }
             catch (Exception e) {

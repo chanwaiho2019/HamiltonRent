@@ -16,7 +16,7 @@ import java.util.List;
 
 public class WaikatoREByBedroom extends AppCompatActivity {
 
-    private WaikatoREWebScraperUsingJsoup waikatoREWebScraperUsingJsoup;
+    private WaikatoREWebScraper waikatoREWebScraper;
     private List<Property> allResidentialProperties;
     private List<Property> propertiesByBedroomNum;
     private List<Property> sortedList;
@@ -64,12 +64,12 @@ public class WaikatoREByBedroom extends AppCompatActivity {
                 String selectedItem = parent.getItemAtPosition(position).toString();
                 if(selectedItem.equals(getResources().getString(R.string.lowToHigh)))
                 {
-                    sortedList = waikatoREWebScraperUsingJsoup.sortByRentLowToHigh(propertiesByBedroomNum);
+                    sortedList = waikatoREWebScraper.sortByRentLowToHigh(propertiesByBedroomNum);
                     PropertyListViewAdapter adapter = new PropertyListViewAdapter(WaikatoREByBedroom.this, sortedList);
                     listViewProperty.setAdapter(adapter);
                 }
                 else if (selectedItem.equals(getResources().getString(R.string.highToLow))){
-                    sortedList = waikatoREWebScraperUsingJsoup.sortByRentHighToLow(propertiesByBedroomNum);
+                    sortedList = waikatoREWebScraper.sortByRentHighToLow(propertiesByBedroomNum);
                     PropertyListViewAdapter adapter = new PropertyListViewAdapter(WaikatoREByBedroom.this, sortedList);
                     listViewProperty.setAdapter(adapter);
                 }
@@ -97,26 +97,26 @@ public class WaikatoREByBedroom extends AppCompatActivity {
         @Override
         protected List<Property> doInBackground(Void... voids) {
             try {
-                //Initialize a WaikatoREWebScraperUsingJsoup object
-                waikatoREWebScraperUsingJsoup = new WaikatoREWebScraperUsingJsoup();
+                //Initialize a WaikatoREWebScraper object
+                waikatoREWebScraper = new WaikatoREWebScraper();
                 //Get the list of all properties
-                allResidentialProperties = waikatoREWebScraperUsingJsoup.getHamiltonRentResidentialData();
+                allResidentialProperties = waikatoREWebScraper.getHamiltonRentResidentialData();
 
                 //Get the corresponding data according to the numBedroom category selected by user
                 if (numBedroom.equals(getResources().getString(R.string.oneBedroom))){
-                    propertiesByBedroomNum = waikatoREWebScraperUsingJsoup.getByBedroomNum(allResidentialProperties, 1);
+                    propertiesByBedroomNum = waikatoREWebScraper.getByBedroomNum(allResidentialProperties, 1);
                 }
                 else if (numBedroom.equals(getResources().getString(R.string.twoBedroom))){
-                    propertiesByBedroomNum = waikatoREWebScraperUsingJsoup.getByBedroomNum(allResidentialProperties, 2);
+                    propertiesByBedroomNum = waikatoREWebScraper.getByBedroomNum(allResidentialProperties, 2);
                 }
                 else if (numBedroom.equals(getResources().getString(R.string.threeBedroom))){
-                    propertiesByBedroomNum = waikatoREWebScraperUsingJsoup.getByBedroomNum(allResidentialProperties, 3);
+                    propertiesByBedroomNum = waikatoREWebScraper.getByBedroomNum(allResidentialProperties, 3);
                 }
                 else if (numBedroom.equals(getResources().getString(R.string.fourBedroom))){
-                    propertiesByBedroomNum = waikatoREWebScraperUsingJsoup.getByBedroomNum(allResidentialProperties, 4);
+                    propertiesByBedroomNum = waikatoREWebScraper.getByBedroomNum(allResidentialProperties, 4);
                 }
                 else if (numBedroom.equals(getResources().getString(R.string.fiveBedroomOrMore))){
-                    propertiesByBedroomNum = waikatoREWebScraperUsingJsoup.getByBedroomNum(allResidentialProperties, 5);
+                    propertiesByBedroomNum = waikatoREWebScraper.getByBedroomNum(allResidentialProperties, 5);
                 }
             }
             catch (Exception e) {
