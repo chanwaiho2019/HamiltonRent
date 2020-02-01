@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -131,6 +132,10 @@ public class WaikatoREByBedroom extends AppCompatActivity {
 
             //End the loading animation
             progressBarHolder.setVisibility(View.GONE);
+
+            //Display the number of results found
+            TextView textViewResult = findViewById(R.id.textViewResultWaikatoRE);
+            textViewResult.setText(propertiesByBedroomNum.size() + " results found");
 
             //Use adapter to connect the listView and my list
             PropertyListViewAdapter adapter = new PropertyListViewAdapter(WaikatoREByBedroom.this, propertiesByBedroomNum);

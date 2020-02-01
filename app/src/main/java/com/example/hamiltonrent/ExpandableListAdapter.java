@@ -121,7 +121,13 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                     intent.putExtra("numBedroom", (String) getChild(i, i1));
                     context.startActivity(intent);
                 }
-
+                //The sublist of Glasshouse is selected
+                else if (getGroup(i).equals(context.getResources().getString(R.string.glassHouse))) {
+                    //Pass the text of textView being clicked to the new activity
+                    Intent intent = new Intent(context, GlasshouseByBedroom.class);
+                    intent.putExtra("numBedroom", (String) getChild(i, i1));
+                    context.startActivity(intent);
+                }
             }
         });
         return view;

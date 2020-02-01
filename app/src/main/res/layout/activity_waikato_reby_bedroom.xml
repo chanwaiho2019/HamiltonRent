@@ -13,6 +13,14 @@
         android:layout_height="wrap_content"
         android:spinnerMode="dropdown"></Spinner>
 
+    <TextView
+        android:id="@+id/textViewResultWaikatoRE"
+        android:paddingLeft="5sp"
+        android:paddingTop="5sp"
+        android:paddingBottom="5sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <FrameLayout
         android:id="@+id/progressBarHolderWaikatoRE"
         android:animateLayoutChanges="true"

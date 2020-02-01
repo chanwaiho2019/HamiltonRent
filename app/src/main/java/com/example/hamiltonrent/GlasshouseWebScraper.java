@@ -69,22 +69,13 @@ public class GlasshouseWebScraper extends WebSraperUsingJsoup {
         return data;
     }
 
-    public static void main(String[] args){
-        GlasshouseWebScraper glasshouseWebScraper = new GlasshouseWebScraper();
-        List<Property> list = glasshouseWebScraper.getHamiltonRentResidentialData();
-//        List<Property> lowToHigh = lodgeWebScraperUsingJsoup.sortByRentLowToHigh(list);
-//        List<Property> highToLow = lodgeWebScraperUsingJsoup.sortByRentHighToLow(list);
-        for (Property p : list){
-            System.out.println(p.getImageURL());
-            System.out.println(p.getTitle());
-            System.out.println(p.getAddress());
-            System.out.println(p.getRent());
-            System.out.println("Bedrooms: " + p.getNumBedroom() + "     Bathrooms: " + p.getNumBathroom() + "     Car space: " + p.getNumCarSpace());
-            System.out.println(p.getlink());
-            System.out.println("---------------");
-        }
-        System.out.println(list.size());
-//        for (Property p : lowToHigh){
+//    public static void main(String[] args){
+//        GlasshouseWebScraper glasshouseWebScraper = new GlasshouseWebScraper();
+//        List<Property> list = glasshouseWebScraper.getHamiltonRentResidentialData();
+////        List<Property> lowToHigh = lodgeWebScraperUsingJsoup.sortByRentLowToHigh(list);
+////        List<Property> highToLow = lodgeWebScraperUsingJsoup.sortByRentHighToLow(list);
+//        for (Property p : list){
+//            System.out.println(p.getImageURL());
 //            System.out.println(p.getTitle());
 //            System.out.println(p.getAddress());
 //            System.out.println(p.getRent());
@@ -92,13 +83,22 @@ public class GlasshouseWebScraper extends WebSraperUsingJsoup {
 //            System.out.println(p.getlink());
 //            System.out.println("---------------");
 //        }
-//        for (Property p : highToLow){
-//            System.out.println(p.getTitle());
-//            System.out.println(p.getAddress());
-//            System.out.println(p.getRent());
-//            System.out.println("Bedrooms: " + p.getNumBedroom() + "     Bathrooms: " + p.getNumBathroom() + "     Car space: " + p.getNumCarSpace());
-//            System.out.println(p.getlink());
-//            System.out.println("---------------");
-//        }
-    }
+//        System.out.println(list.size());
+////        for (Property p : lowToHigh){
+////            System.out.println(p.getTitle());
+////            System.out.println(p.getAddress());
+////            System.out.println(p.getRent());
+////            System.out.println("Bedrooms: " + p.getNumBedroom() + "     Bathrooms: " + p.getNumBathroom() + "     Car space: " + p.getNumCarSpace());
+////            System.out.println(p.getlink());
+////            System.out.println("---------------");
+////        }
+////        for (Property p : highToLow){
+////            System.out.println(p.getTitle());
+////            System.out.println(p.getAddress());
+////            System.out.println(p.getRent());
+////            System.out.println("Bedrooms: " + p.getNumBedroom() + "     Bathrooms: " + p.getNumBathroom() + "     Car space: " + p.getNumCarSpace());
+////            System.out.println(p.getlink());
+////            System.out.println("---------------");
+////        }
+//    }
 }

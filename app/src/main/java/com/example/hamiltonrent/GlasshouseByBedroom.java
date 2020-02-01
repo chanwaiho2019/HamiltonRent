@@ -15,9 +15,9 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class LodgeByBedroom extends AppCompatActivity {
+public class GlasshouseByBedroom extends AppCompatActivity {
 
-    private LodgeWebScraper lodgeWebScraper;
+    private GlasshouseWebScraper glasshouseWebScraper;
     private List<Property> allResidentialProperties;
     private List<Property> propertiesByBedroomNum;
     private List<Property> sortedList;
@@ -26,30 +26,29 @@ public class LodgeByBedroom extends AppCompatActivity {
     private AlphaAnimation animation;
     private FrameLayout progressBarHolder;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lodge_by_bedroom);
+        setContentView(R.layout.activity_glasshouse_by_bedroom);
 
         //Initialize a progressBarHolder
-        progressBarHolder = findViewById(R.id.progressBarHolderLodge);
+        progressBarHolder = findViewById(R.id.progressBarHolderGlasshouse);
 
         //Get the string from previous intent
         Intent intent = getIntent();
         numBedroom = intent.getStringExtra("numBedroom");
 
         //Set title of activity
-        setTitle("Lodge " + "(" + numBedroom + ")");
+        setTitle("Glasshouse " + "(" + numBedroom + ")");
 
-        //Initialize the textView object
-        listViewProperty = findViewById(R.id.listViewPropertyLodge);
+        //Initialize the ListView object
+        listViewProperty = findViewById(R.id.listViewPropertyGlasshouse);
 
         //Execute the scraping process
-        new LodgeByBedroom.doTheScraping().execute();
+        new GlasshouseByBedroom.doTheScraping().execute();
 
         //Set the spinner
-        Spinner spinnerSort = findViewById(R.id.spinnerSortLodge);
+        Spinner spinnerSort = findViewById(R.id.spinnerSortGlasshouse);
         String[] items = new String[]{getResources().getString(R.string.lowToHigh),
                 getResources().getString(R.string.highToLow),
                 getResources().getString(R.string.sortByRent)};
@@ -65,13 +64,13 @@ public class LodgeByBedroom extends AppCompatActivity {
                 String selectedItem = parent.getItemAtPosition(position).toString();
                 if(selectedItem.equals(getResources().getString(R.string.lowToHigh)))
                 {
-                    sortedList = lodgeWebScraper.sortByRentLowToHigh(propertiesByBedroomNum);
-                    PropertyListViewAdapter adapter = new PropertyListViewAdapter(LodgeByBedroom.this, sortedList);
+                    sortedList = glasshouseWebScraper.sortByRentLowToHigh(propertiesByBedroomNum);
+                    PropertyListViewAdapter adapter = new PropertyListViewAdapter(GlasshouseByBedroom.this, sortedList);
                     listViewProperty.setAdapter(adapter);
                 }
                 else if (selectedItem.equals(getResources().getString(R.string.highToLow))){
-                    sortedList = lodgeWebScraper.sortByRentHighToLow(propertiesByBedroomNum);
-                    PropertyListViewAdapter adapter = new PropertyListViewAdapter(LodgeByBedroom.this, sortedList);
+                    sortedList = glasshouseWebScraper.sortByRentHighToLow(propertiesByBedroomNum);
+                    PropertyListViewAdapter adapter = new PropertyListViewAdapter(GlasshouseByBedroom.this, sortedList);
                     listViewProperty.setAdapter(adapter);
                 }
             } // To close the onItemSelected
@@ -98,26 +97,26 @@ public class LodgeByBedroom extends AppCompatActivity {
         @Override
         protected List<Property> doInBackground(Void... voids) {
             try {
-                //Initialize a LodgeWebScraper object
-                lodgeWebScraper = new LodgeWebScraper();
+                //Initialize a RayWhiteWebScraper object
+                glasshouseWebScraper = new GlasshouseWebScraper();
                 //Get the list of all properties
-                allResidentialProperties = lodgeWebScraper.getHamiltonRentResidentialData();
+                allResidentialProperties = glasshouseWebScraper.getHamiltonRentResidentialData();
 
                 //Get the corresponding data according to the numBedroom category selected by user
                 if (numBedroom.equals(getResources().getString(R.string.oneBedroom))){
-                    propertiesByBedroomNum = lodgeWebScraper.getByBedroomNum(allResidentialProperties, 1);
+                    propertiesByBedroomNum = glasshouseWebScraper.getByBedroomNum(allResidentialProperties, 1);
                 }
                 else if (numBedroom.equals(getResources().getString(R.string.twoBedroom))){
-                    propertiesByBedroomNum = lodgeWebScraper.getByBedroomNum(allResidentialProperties, 2);
+                    propertiesByBedroomNum = glasshouseWebScraper.getByBedroomNum(allResidentialProperties, 2);
                 }
                 else if (numBedroom.equals(getResources().getString(R.string.threeBedroom))){
-                    propertiesByBedroomNum = lodgeWebScraper.getByBedroomNum(allResidentialProperties, 3);
+                    propertiesByBedroomNum = glasshouseWebScraper.getByBedroomNum(allResidentialProperties, 3);
                 }
                 else if (numBedroom.equals(getResources().getString(R.string.fourBedroom))){
-                    propertiesByBedroomNum = lodgeWebScraper.getByBedroomNum(allResidentialProperties, 4);
+                    propertiesByBedroomNum = glasshouseWebScraper.getByBedroomNum(allResidentialProperties, 4);
                 }
                 else if (numBedroom.equals(getResources().getString(R.string.fiveBedroomOrMore))){
-                    propertiesByBedroomNum = lodgeWebScraper.getByBedroomNum(allResidentialProperties, 5);
+                    propertiesByBedroomNum = glasshouseWebScraper.getByBedroomNum(allResidentialProperties, 5);
                 }
             }
             catch (Exception e) {
@@ -134,11 +133,11 @@ public class LodgeByBedroom extends AppCompatActivity {
             progressBarHolder.setVisibility(View.GONE);
 
             //Display the number of results found
-            TextView textViewResult = findViewById(R.id.textViewResultLodge);
+            TextView textViewResult = findViewById(R.id.textViewResultGlasshouse);
             textViewResult.setText(propertiesByBedroomNum.size() + " results found");
 
             //Use adapter to connect the listView and my list
-            PropertyListViewAdapter adapter = new PropertyListViewAdapter(LodgeByBedroom.this, propertiesByBedroomNum);
+            PropertyListViewAdapter adapter = new PropertyListViewAdapter(GlasshouseByBedroom.this, propertiesByBedroomNum);
             listViewProperty.setAdapter(adapter);
         }
     }

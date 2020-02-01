@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         listDataHeader.add(getResources().getString(R.string.lodge));
         listDataHeader.add(getResources().getString(R.string.rayWhite));
         listDataHeader.add(getResources().getString(R.string.eves));
+        listDataHeader.add(getResources().getString(R.string.glassHouse));
 
         //List of items in Harcourts category
         List<String> harcourtsList = new ArrayList<>();
@@ -84,11 +85,20 @@ public class MainActivity extends AppCompatActivity {
         evesList.add(getResources().getString(R.string.fourBedroom));
         evesList.add(getResources().getString(R.string.fiveBedroomOrMore));
 
+        //List of items in Glasshouse category
+        List<String> glasshouseList = new ArrayList<>();
+        glasshouseList.add(getResources().getString(R.string.oneBedroom));
+        glasshouseList.add(getResources().getString(R.string.twoBedroom));
+        glasshouseList.add(getResources().getString(R.string.threeBedroom));
+        glasshouseList.add(getResources().getString(R.string.fourBedroom));
+        glasshouseList.add(getResources().getString(R.string.fiveBedroomOrMore));
+
         //Map the category(key) and corresponding sublist(value) into the hash map
         listHashMap.put(listDataHeader.get(0), harcourtsList);
         listHashMap.put(listDataHeader.get(1), waikatoREList);
         listHashMap.put(listDataHeader.get(2), lodgeList);
         listHashMap.put(listDataHeader.get(3), rayWhiteList);
         listHashMap.put(listDataHeader.get(4), evesList);
+        listHashMap.put(listDataHeader.get(5), glasshouseList);
     }
 }
