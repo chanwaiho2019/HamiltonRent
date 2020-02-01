@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RayWhiteByBedroom"></activity>
+        <activity android:name=".EvesByBedroom"></activity>
+        <activity android:name=".RayWhiteByBedroom" />
         <activity android:name=".LodgeByBedroom" />
         <activity android:name=".WaikatoREByBedroom" />
         <activity android:name=".HarcourtsByBedroom" />

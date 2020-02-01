@@ -44,7 +44,7 @@ public class EvesWebScraper extends WebSraperUsingJsoup {
                 //Loop through the elements
                 for (Element e : document.select("div.col-xs-12.col-sm-6.col-md-4.listing.listing-grid")) {
                     imageURL = e.select("div").attr("style");
-                    imageURL = imageURL.substring( imageURL.indexOf("https://"), imageURL.indexOf(")"));
+                    imageURL = imageURL.substring( imageURL.indexOf("https://"), imageURL.indexOf("')"));
                     //title = e.select("div.listing-heading").text();
                     //address = e.select("p span").text() + " " + e.select("p b").text() + " Hamilton";
                     link = e.select("a").attr("abs:href");
@@ -104,12 +104,29 @@ public class EvesWebScraper extends WebSraperUsingJsoup {
         return data;
     }
 
-    public static void main(String[] args){
-        EvesWebScraper evesWebScraper = new EvesWebScraper();
-        List<Property> list = evesWebScraper.getHamiltonRentResidentialData();
-//        List<Property> lowToHigh = waikatoREWebScraperUsingJsoup.sortByRentLowToHigh(list);
-//        List<Property> highToLow = waikatoREWebScraperUsingJsoup.sortByRentHighToLow(list);
-//        for (Property p : lowToHigh){
+//    public static void main(String[] args){
+//        EvesWebScraper evesWebScraper = new EvesWebScraper();
+//        List<Property> list = evesWebScraper.getHamiltonRentResidentialData();
+////        List<Property> lowToHigh = waikatoREWebScraperUsingJsoup.sortByRentLowToHigh(list);
+////        List<Property> highToLow = waikatoREWebScraperUsingJsoup.sortByRentHighToLow(list);
+////        for (Property p : lowToHigh){
+////            System.out.println(p.getTitle());
+////            System.out.println(p.getAddress());
+////            System.out.println(p.getRent());
+////            System.out.println("Bedrooms: " + p.getNumBedroom() + "     Bathrooms: " + p.getNumBathroom() + "     Car space: " + p.getNumCarSpace());
+////            System.out.println(p.getlink());
+////            System.out.println("---------------");
+////        }
+////        for (Property p : highToLow){
+////            System.out.println(p.getTitle());
+////            System.out.println(p.getAddress());
+////            System.out.println(p.getRent());
+////            System.out.println("Bedrooms: " + p.getNumBedroom() + "     Bathrooms: " + p.getNumBathroom() + "     Car space: " + p.getNumCarSpace());
+////            System.out.println(p.getlink());
+////            System.out.println("---------------");
+////        }
+//        for (Property p : list){
+//            System.out.println(p.getImageURL());
 //            System.out.println(p.getTitle());
 //            System.out.println(p.getAddress());
 //            System.out.println(p.getRent());
@@ -117,23 +134,6 @@ public class EvesWebScraper extends WebSraperUsingJsoup {
 //            System.out.println(p.getlink());
 //            System.out.println("---------------");
 //        }
-//        for (Property p : highToLow){
-//            System.out.println(p.getTitle());
-//            System.out.println(p.getAddress());
-//            System.out.println(p.getRent());
-//            System.out.println("Bedrooms: " + p.getNumBedroom() + "     Bathrooms: " + p.getNumBathroom() + "     Car space: " + p.getNumCarSpace());
-//            System.out.println(p.getlink());
-//            System.out.println("---------------");
-//        }
-        for (Property p : list){
-            System.out.println(p.getImageURL());
-            System.out.println(p.getTitle());
-            System.out.println(p.getAddress());
-            System.out.println(p.getRent());
-            System.out.println("Bedrooms: " + p.getNumBedroom() + "     Bathrooms: " + p.getNumBathroom() + "     Car space: " + p.getNumCarSpace());
-            System.out.println(p.getlink());
-            System.out.println("---------------");
-        }
-        System.out.println(list.size());
-    }
+//        System.out.println(list.size());
+//    }
 }

@@ -114,10 +114,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                     intent.putExtra("numBedroom", (String) getChild(i, i1));
                     context.startActivity(intent);
                 }
+                //The sublist of EVES is selected
                 else if (getGroup(i).equals(context.getResources().getString(R.string.eves))) {
-                    ///
-                    /// Have to implement
-                    ///
+                    //Pass the text of textView being clicked to the new activity
+                    Intent intent = new Intent(context, EvesByBedroom.class);
+                    intent.putExtra("numBedroom", (String) getChild(i, i1));
+                    context.startActivity(intent);
                 }
 
             }
