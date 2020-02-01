@@ -114,6 +114,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                     intent.putExtra("numBedroom", (String) getChild(i, i1));
                     context.startActivity(intent);
                 }
+                else if (getGroup(i).equals(context.getResources().getString(R.string.eves))) {
+                    ///
+                    /// Have to implement
+                    ///
+                }
 
             }
         });
