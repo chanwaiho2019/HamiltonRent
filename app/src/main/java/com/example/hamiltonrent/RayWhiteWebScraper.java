@@ -1,5 +1,6 @@
 package com.example.hamiltonrent;
 
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -51,19 +52,27 @@ public class RayWhiteWebScraper extends WebSraperUsingJsoup{
                 rent = rent.replaceAll("[^\\d]", "");
                 Elements temp = e.select("ul li");
                 String[] rooms = temp.text().split(" ");
-                numBedroom = rooms[0];
-                numBathroom = rooms[2];
-                if (rooms.length == 6){
+                if (rooms.length == 4){
+                    numBedroom = rooms[0];
+                    numBathroom = rooms[2];
+                    numCarSpace = "0";
+                }
+                else if (rooms.length == 6){
+                    numBedroom = rooms[0];
+                    numBathroom = rooms[2];
                     numCarSpace = rooms[4];
                 }
-                else{
-                    numCarSpace = "0";
+                else {
+                    numBedroom = "-1";
+                    numBathroom = "-1";
+                    numCarSpace = "-1";
                 }
                 link = e.select("h2 a").attr("abs:href");
 
                 //Add the data to the list
                 Property property = new Property(imageURL, title, address, rent, numBedroom, numBathroom, numCarSpace, link);
                 data.add(property);
+
             }
         }
         catch (Exception e){

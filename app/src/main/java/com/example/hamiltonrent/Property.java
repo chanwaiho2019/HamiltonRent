@@ -6,10 +6,11 @@ public class Property {
     private String title;
     private String address;
     private float rent;
-    private int numBedroom;
-    private int numBathroom;
-    private int numCarSpace;
+    private int numBedroom;     // -1 means they are not mentioned in the website
+    private int numBathroom;    // -1 means they are not mentioned in the website
+    private int numCarSpace;    // -1 means they are not mentioned in the website
     private String link;
+    private String agent;
 
     /**
      * Initialize a Property object
@@ -18,7 +19,7 @@ public class Property {
      * @param rent The rent of property
      * @param link The link for detail description of property
      */
-    public Property(String imageURL, String title, String address, String rent, String numBedroom, String numBathroom, String numCarSpace, String link){
+    public Property(String imageURL, String title, String address, String rent, String numBedroom, String numBathroom, String numCarSpace, String link, String agent){
         this.imageURL = imageURL;
         this.title = title;
         this.address = address;
@@ -27,6 +28,7 @@ public class Property {
         this.numBathroom = Integer.parseInt(numBathroom);
         this.numCarSpace = Integer.parseInt(numCarSpace);
         this.link = link;
+        this.agent = agent;
     }
 
     /**
@@ -91,6 +93,14 @@ public class Property {
      */
     public String getlink(){
         return this.link;
+    }
+
+    /**
+     * Get the agent of property
+     * @return The agent of property
+     */
+    public String getAgent() {
+        return this.agent;
     }
 
 }
