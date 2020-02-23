@@ -39,6 +39,7 @@ public class GlasshouseWebScraper extends WebSraperUsingJsoup {
             String numBathroom;
             String numCarSpace;
             String link;
+            String agent = "Glasshouse";
 
             //Loop through the elements
             Elements elements = document.select("div.divBorder");
@@ -59,7 +60,7 @@ public class GlasshouseWebScraper extends WebSraperUsingJsoup {
                 link = e.select("div.divInspectionButton input").attr("onclick");
                 link = link.substring(link.indexOf("https://"), link.indexOf("')"));
                 //Add the data to the list
-                Property property = new Property(imageURL, title, address, rent, numBedroom, numBathroom, numCarSpace, link);
+                Property property = new Property(imageURL, title, address, rent, numBedroom, numBathroom, numCarSpace, link, agent);
                 data.add(property);
             }
         }

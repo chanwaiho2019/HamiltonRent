@@ -41,6 +41,7 @@ public class HarcourtsWebScraper extends WebSraperUsingJsoup{
             String numBathroom;
             String numCarSpace;
             String link;
+            String agent = "Harcourts";
 
             //Find the number of pages that it has
             int numOfPages = findNumberOfPages(url);
@@ -66,7 +67,7 @@ public class HarcourtsWebScraper extends WebSraperUsingJsoup{
                     link = e.select("h2 a").attr("abs:href");
 
                     //Add the data to the list
-                    Property property = new Property(imageURL, title, address, rent, numBedroom, numBathroom, numCarSpace, link);
+                    Property property = new Property(imageURL, title, address, rent, numBedroom, numBathroom, numCarSpace, link, agent);
                     data.add(property);
                 }
                 Element nextPage = document.select("div.next-pagination a").first();

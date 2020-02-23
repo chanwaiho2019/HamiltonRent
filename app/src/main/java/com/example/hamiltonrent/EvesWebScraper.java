@@ -38,6 +38,7 @@ public class EvesWebScraper extends WebSraperUsingJsoup {
             String numBathroom;
             String numCarSpace;
             String link;
+            String agent = "Eves";
 
             int currentPage = 1;
             while (true) {
@@ -76,7 +77,7 @@ public class EvesWebScraper extends WebSraperUsingJsoup {
                     address = elAddress.get(2).text();
 
                     //Add the data to the list
-                    Property property = new Property(imageURL, title, address, rent, numBedroom, numBathroom, numCarSpace, link);
+                    Property property = new Property(imageURL, title, address, rent, numBedroom, numBathroom, numCarSpace, link, agent);
                     data.add(property);
                 }
                 //Proceed to the next page

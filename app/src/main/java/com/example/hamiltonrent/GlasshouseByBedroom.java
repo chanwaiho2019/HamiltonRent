@@ -97,7 +97,7 @@ public class GlasshouseByBedroom extends AppCompatActivity {
         @Override
         protected List<Property> doInBackground(Void... voids) {
             try {
-                //Initialize a RayWhiteWebScraper object
+                //Initialize a GlasshouseWebScraper object
                 glasshouseWebScraper = new GlasshouseWebScraper();
                 //Get the list of all properties
                 allResidentialProperties = glasshouseWebScraper.getHamiltonRentResidentialData();

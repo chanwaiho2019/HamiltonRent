@@ -2,103 +2,128 @@ package com.example.hamiltonrent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
+import android.os.Handler;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ExpandableListView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.view.animation.AlphaAnimation;
+import android.widget.FrameLayout;
+
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
 
-    private ExpandableListView expandableListView;
-    private ExpandableListAdapter expandableListAdapter;
-    private List<String> listDataHeader;
-    private HashMap<String, List<String>> listHashMap;
+    private static int SPLASH_TIME_OUT = 65000;
+    private HarcourtsWebScraper harcourtsWebScraper;
+    private WaikatoREWebScraper waikatoREWebScraper;
+    private LodgeWebScraper lodgeWebScraper;
+    private RayWhiteWebScraper rayWhiteWebScraper;
+    private EvesWebScraper evesWebScraper;
+    private GlasshouseWebScraper glasshouseWebScraper;
+    private List<Property> allProperties;
+    private SharedPreferences sharedPreferences;
+    private AlphaAnimation animation;
+    private FrameLayout progressBarHolder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        expandableListView = findViewById(R.id.expandableLVCategory);
-        initData();
-        expandableListAdapter = new ExpandableListAdapter(this, listDataHeader, listHashMap);
-        expandableListView.setAdapter(expandableListAdapter);
+        //Initialize a progressBarHolder
+        progressBarHolder = findViewById(R.id.progressBarHolder);
+
+        //Clear the previous shared preferences
+        this.getSharedPreferences("shared preferences", 0).edit().clear().commit();
+
+        //Execute the scraping process
+        new doTheScraping().execute();
+
+        //Splash screen
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent homeIntent = new Intent(MainActivity.this, HomePage.class);
+                startActivity(homeIntent);
+                finish();
+            }
+        }, SPLASH_TIME_OUT);
     }
 
     /**
-     * A method to initialize the data for the expandable list view
+     * A class for doing the web scraping in the background
      */
-    private void initData() {
-        listDataHeader = new ArrayList<>();
-        listHashMap = new HashMap<>();
+    public class doTheScraping extends AsyncTask<Void, Void, List<Property>> {
 
-        //List of Categories
-        listDataHeader.add(getResources().getString(R.string.harcourts));
-        listDataHeader.add(getResources().getString(R.string.waikatoRealEstate));
-        listDataHeader.add(getResources().getString(R.string.lodge));
-        listDataHeader.add(getResources().getString(R.string.rayWhite));
-        listDataHeader.add(getResources().getString(R.string.eves));
-        listDataHeader.add(getResources().getString(R.string.glassHouse));
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
 
-        //List of items in Harcourts category
-        List<String> harcourtsList = new ArrayList<>();
-        harcourtsList.add(getResources().getString(R.string.oneBedroom));
-        harcourtsList.add(getResources().getString(R.string.twoBedroom));
-        harcourtsList.add(getResources().getString(R.string.threeBedroom));
-        harcourtsList.add(getResources().getString(R.string.fourBedroom));
-        harcourtsList.add(getResources().getString(R.string.fiveBedroomOrMore));
+            //Set the loading animation
+            animation = new AlphaAnimation(0f, 1f);
+            animation.setDuration(200);
+            progressBarHolder.setAnimation(animation);
+            progressBarHolder.setVisibility(View.VISIBLE);
+        }
 
-        //List of items in Waikato Real Estate category
-        List<String> waikatoREList = new ArrayList<>();
-        waikatoREList.add(getResources().getString(R.string.oneBedroom));
-        waikatoREList.add(getResources().getString(R.string.twoBedroom));
-        waikatoREList.add(getResources().getString(R.string.threeBedroom));
-        waikatoREList.add(getResources().getString(R.string.fourBedroom));
-        waikatoREList.add(getResources().getString(R.string.fiveBedroomOrMore));
+        @Override
+        protected List<Property> doInBackground(Void... voids) {
+            try {
+                //Initialize an empty list to store all the properties
+                allProperties = new ArrayList<>();
 
-        //List of items in Lodge category
-        List<String> lodgeList = new ArrayList<>();
-        lodgeList.add(getResources().getString(R.string.oneBedroom));
-        lodgeList.add(getResources().getString(R.string.twoBedroom));
-        lodgeList.add(getResources().getString(R.string.threeBedroom));
-        lodgeList.add(getResources().getString(R.string.fourBedroom));
-        lodgeList.add(getResources().getString(R.string.fiveBedroomOrMore));
+                harcourtsWebScraper = new HarcourtsWebScraper();
+                List<Property> listHarcourts = harcourtsWebScraper.getHamiltonRentResidentialData();
 
-        //List of items in RayWhite category
-        List<String> rayWhiteList = new ArrayList<>();
-        rayWhiteList.add(getResources().getString(R.string.oneBedroom));
-        rayWhiteList.add(getResources().getString(R.string.twoBedroom));
-        rayWhiteList.add(getResources().getString(R.string.threeBedroom));
-        rayWhiteList.add(getResources().getString(R.string.fourBedroom));
-        rayWhiteList.add(getResources().getString(R.string.fiveBedroomOrMore));
+                waikatoREWebScraper = new WaikatoREWebScraper();
+                List<Property> listWaikatoRE = waikatoREWebScraper.getHamiltonRentResidentialData();
 
-        //List of items in EVES category
-        List<String> evesList = new ArrayList<>();
-        evesList.add(getResources().getString(R.string.oneBedroom));
-        evesList.add(getResources().getString(R.string.twoBedroom));
-        evesList.add(getResources().getString(R.string.threeBedroom));
-        evesList.add(getResources().getString(R.string.fourBedroom));
-        evesList.add(getResources().getString(R.string.fiveBedroomOrMore));
+                lodgeWebScraper = new LodgeWebScraper();
+                List<Property> listLodge = lodgeWebScraper.getHamiltonRentResidentialData();
 
-        //List of items in Glasshouse category
-        List<String> glasshouseList = new ArrayList<>();
-        glasshouseList.add(getResources().getString(R.string.oneBedroom));
-        glasshouseList.add(getResources().getString(R.string.twoBedroom));
-        glasshouseList.add(getResources().getString(R.string.threeBedroom));
-        glasshouseList.add(getResources().getString(R.string.fourBedroom));
-        glasshouseList.add(getResources().getString(R.string.fiveBedroomOrMore));
+                rayWhiteWebScraper = new RayWhiteWebScraper();
+                List<Property> listRayWhite = rayWhiteWebScraper.getHamiltonRentResidentialData();
 
-        //Map the category(key) and corresponding sublist(value) into the hash map
-        listHashMap.put(listDataHeader.get(0), harcourtsList);
-        listHashMap.put(listDataHeader.get(1), waikatoREList);
-        listHashMap.put(listDataHeader.get(2), lodgeList);
-        listHashMap.put(listDataHeader.get(3), rayWhiteList);
-        listHashMap.put(listDataHeader.get(4), evesList);
-        listHashMap.put(listDataHeader.get(5), glasshouseList);
+                evesWebScraper = new EvesWebScraper();
+                List<Property> listEves = evesWebScraper.getHamiltonRentResidentialData();
+
+                glasshouseWebScraper = new GlasshouseWebScraper();
+                List<Property> listGlasshouse = glasshouseWebScraper.getHamiltonRentResidentialData();
+
+                //Combine all the lists into one list
+                allProperties.addAll(listHarcourts);
+                allProperties.addAll(listWaikatoRE);
+                allProperties.addAll(listLodge);
+                allProperties.addAll(listRayWhite);
+                allProperties.addAll(listEves);
+                allProperties.addAll(listGlasshouse);
+
+                //Save data in shared preferences
+                sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                Gson gson = new Gson();
+                String json = gson.toJson(allProperties);
+                editor.putString("task list", json);
+                editor.apply();
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+            return allProperties;
+        }
+
+        @Override
+        protected void onPostExecute(List<Property> properties) {
+            super.onPostExecute(properties);
+
+            //End the loading animation
+            progressBarHolder.setVisibility(View.GONE);
+        }
     }
 }

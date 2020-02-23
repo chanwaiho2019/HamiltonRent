@@ -41,6 +41,7 @@ public class RayWhiteWebScraper extends WebSraperUsingJsoup{
             String numBathroom;
             String numCarSpace;
             String link;
+            String agent = "RayWhite";
 
             //Loop through the elements
             for (Element e : document.select("div.proplist_item")) {
@@ -70,7 +71,7 @@ public class RayWhiteWebScraper extends WebSraperUsingJsoup{
                 link = e.select("h2 a").attr("abs:href");
 
                 //Add the data to the list
-                Property property = new Property(imageURL, title, address, rent, numBedroom, numBathroom, numCarSpace, link);
+                Property property = new Property(imageURL, title, address, rent, numBedroom, numBathroom, numCarSpace, link, agent);
                 data.add(property);
 
             }

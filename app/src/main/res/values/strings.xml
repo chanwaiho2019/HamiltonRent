@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Hamilton Rent</string>
+    <string name="loading">Fetching the data, please wait!</string>
     <string name="harcourts">Harcourts</string>
     <string name="waikatoRealEstate">Waikato Real Estate</string>
     <string name="lodge">Lodge</string>
@@ -15,4 +16,28 @@
     <string name="highToLow">High to low</string>
     <string name="sortByRent">Sort by rent</string>
     <string name="propertyImage">Image of property</string>
+
+    <string name="beerescourt">Beerescourt</string>
+    <string name="chartwell">Chartwell</string>
+    <string name="claudelands">Claudelands</string>
+    <string name="deanwell">Deanwell</string>
+    <string name="dinsdale">Dinsdale</string>
+    <string name="enderley">Enderley</string>
+    <string name="eureka">Eureka</string>
+    <string name="fairfield">Fairfield</string>
+    <string name="fairviewDowns">Fairview Downs</string>
+    <string name="frankton">Frankton</string>
+    <string name="grandviewHeights">Grandview Heights</string>
+    <string name="hamiltonCityCentral">Hamilton City Central</string>
+    <string name="hamiltonEast">Hamilton East</string>
+    <string name="harrowfield">Harrowfield</string>
+    <string name="hillcrest">Hillcrest</string>
+    <string name="maeroa">Maeroa</string>
+    <string name="melville">Melville</string>
+    <string name="ohaupo">Ohaupo</string>
+    <string name="pukete">Pukete</string>
+    <string name="rotokauri">Rotokauri</string>
+    <string name="rototuna">Rototuna</string>
+    <string name="silverdale">Silverdale</string>
+    <string name="teawamutu">Te Awamutu</string>
 </resources>

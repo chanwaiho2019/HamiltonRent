@@ -87,10 +87,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             @Override
             public void onClick(View view) {
                 //The sublist of Harcourts is selected
-                if (getGroup(i).equals(context.getResources().getString(R.string.harcourts))) {
-                    //Pass the text of textView being clicked to the new activity
-                    Intent intent = new Intent(context, HarcourtsByBedroom.class);
-                    intent.putExtra("numBedroom", (String) getChild(i, i1));
+                if (getGroup(i).equals(context.getResources().getString(R.string.beerescourt))) {
+//                    //Pass the text of textView being clicked to the new activity
+//                    Intent intent = new Intent(context, HarcourtsByBedroom.class);
+//                    intent.putExtra("numBedroom", (String) getChild(i, i1));
+//                    context.startActivity(intent);
+                    Intent intent = new Intent(context, trial.class);
                     context.startActivity(intent);
                 }
                 //The sublist of Waikato Real Estate is selected

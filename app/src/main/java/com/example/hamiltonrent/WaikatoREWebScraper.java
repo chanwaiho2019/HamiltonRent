@@ -37,6 +37,7 @@ public class WaikatoREWebScraper extends WebSraperUsingJsoup{
             String numBathroom;
             String numCarSpace;
             String link;
+            String agent = "Waikato Real Estate";
 
             int currentPage = 1;
             // Find the number of pages
@@ -70,7 +71,7 @@ public class WaikatoREWebScraper extends WebSraperUsingJsoup{
                     address = elTemp.select("p.description").text();
 
                     //Add the data to the list
-                    Property property = new Property(imageURL, title, address, rent, numBedroom, numBathroom, numCarSpace, link);
+                    Property property = new Property(imageURL, title, address, rent, numBedroom, numBathroom, numCarSpace, link, agent);
                     data.add(property);
                 }
                 //Proceed to the next page
