@@ -33,7 +33,25 @@ public class PropertyListViewAdapter extends ArrayAdapter<Property> {
             viewHolder = (ViewHolder) view.getTag();
         }
 
-        viewHolder.agent.setText(getItem(position).getAgent());
+//        viewHolder.agent.setText(getItem(position).getAgent());
+        if (getItem(position).getAgent().equals("Harcourts")){
+            viewHolder.agent.setImageResource(R.drawable.harcourts);
+        }
+        else if (getItem(position).getAgent().equals("Waikato Real Estate")){
+            viewHolder.agent.setImageResource(R.drawable.waikato_real_estate);
+        }
+        else if (getItem(position).getAgent().equals("Lodge")){
+            viewHolder.agent.setImageResource(R.drawable.lodge);
+        }
+        else if (getItem(position).getAgent().equals("RayWhite")){
+            viewHolder.agent.setImageResource(R.drawable.raywhite);
+        }
+        else if (getItem(position).getAgent().equals("Eves")){
+            viewHolder.agent.setImageResource(R.drawable.eves);
+        }
+        else if (getItem(position).getAgent().equals("Glasshouse")){
+            viewHolder.agent.setImageResource(R.drawable.glasshouse);
+        }
         Picasso.get().load(getItem(position).getImageURL()).resize(600, 400).into(viewHolder.image);
         viewHolder.title.setText(getItem(position).getTitle());
         viewHolder.address.setText(getItem(position).getAddress());
@@ -48,7 +66,8 @@ public class PropertyListViewAdapter extends ArrayAdapter<Property> {
 
     private class ViewHolder {
 
-        public TextView agent;
+//        public TextView agent;
+        public ImageView agent;
         public ImageView image;
         public TextView title;
         public TextView address;
@@ -59,7 +78,8 @@ public class PropertyListViewAdapter extends ArrayAdapter<Property> {
         public TextView link;
 
         public void setView(View view) {
-            agent = view.findViewById(R.id.textViewAgent);
+//            agent = view.findViewById(R.id.textViewAgent);
+            agent = view.findViewById(R.id.imageViewAgent);
             image = view.findViewById(R.id.imageViewProperty);
             title = view.findViewById(R.id.textViewTitle);
             address = view.findViewById(R.id.textViewAddress);

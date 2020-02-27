@@ -1,5 +1,9 @@
 package com.example.hamiltonrent;
 
+
+import android.app.Application;
+import android.content.res.Resources;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
