@@ -69,69 +69,80 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         TextView textViewHeader = view.findViewById(R.id.textViewHeader);
         textViewHeader.setTypeface(null, Typeface.BOLD);
         textViewHeader.setText(headerTitle);
+        //if the textView is being clicked
+        textViewHeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, PropertiesBySuburb.class);
+                intent.putExtra("suburb", (String) getGroup(i));
+                context.startActivity(intent);
+            }
+        });
         return view;
     }
 
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
-        String childText = (String) getChild(i, i1);
-        if (view == null){
-            LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.list_item, null);
-        }
-        TextView textViewItem = view.findViewById(R.id.textViewItem);
-        textViewItem.setText(childText);
-
-        //if the textView is being clicked
-        textViewItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //The sublist of Harcourts is selected
-                if (getGroup(i).equals(context.getResources().getString(R.string.beerescourt))) {
+//        String childText = (String) getChild(i, i1);
+//        if (view == null){
+//            LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//            view = inflater.inflate(R.layout.list_item, null);
+//        }
+//        TextView textViewItem = view.findViewById(R.id.textViewItem);
+//        textViewItem.setText(childText);
+//
+//        //if the textView is being clicked
+//        textViewItem.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //The sublist of Beerescourt is selected
+//                if (getGroup(i).equals(context.getResources().getString(R.string.beerescourt))) {
+////                    //Pass the text of textView being clicked to the new activity
+////                    Intent intent = new Intent(context, HarcourtsByBedroom.class);
+////                    intent.putExtra("numBedroom", (String) getChild(i, i1));
+////                    context.startActivity(intent);
+//                    Intent intent = new Intent(context, PropertiesBySuburb.class);
+//                    intent.putExtra("numBedroom", (String) getChild(i, i1));
+//                    intent.putExtra("suburb", (String) getGroup(i));
+//                    context.startActivity(intent);
+//                }
+//                //The sublist of Waikato Real Estate is selected
+//                else if (getGroup(i).equals(context.getResources().getString(R.string.waikatoRealEstate))){
 //                    //Pass the text of textView being clicked to the new activity
-//                    Intent intent = new Intent(context, HarcourtsByBedroom.class);
+//                    Intent intent = new Intent(context, WaikatoREByBedroom.class);
 //                    intent.putExtra("numBedroom", (String) getChild(i, i1));
 //                    context.startActivity(intent);
-                    Intent intent = new Intent(context, trial.class);
-                    context.startActivity(intent);
-                }
-                //The sublist of Waikato Real Estate is selected
-                else if (getGroup(i).equals(context.getResources().getString(R.string.waikatoRealEstate))){
-                    //Pass the text of textView being clicked to the new activity
-                    Intent intent = new Intent(context, WaikatoREByBedroom.class);
-                    intent.putExtra("numBedroom", (String) getChild(i, i1));
-                    context.startActivity(intent);
-                }
-                //The sublist of Lodge is selected
-                else if (getGroup(i).equals(context.getResources().getString(R.string.lodge))){
-                    //Pass the text of textView being clicked to the new activity
-                    Intent intent = new Intent(context, LodgeByBedroom.class);
-                    intent.putExtra("numBedroom", (String) getChild(i, i1));
-                    context.startActivity(intent);
-                }
-                //The sublist of RayWhite is selected
-                else if (getGroup(i).equals(context.getResources().getString(R.string.rayWhite))){
-                    //Pass the text of textView being clicked to the new activity
-                    Intent intent = new Intent(context, RayWhiteByBedroom.class);
-                    intent.putExtra("numBedroom", (String) getChild(i, i1));
-                    context.startActivity(intent);
-                }
-                //The sublist of EVES is selected
-                else if (getGroup(i).equals(context.getResources().getString(R.string.eves))) {
-                    //Pass the text of textView being clicked to the new activity
-                    Intent intent = new Intent(context, EvesByBedroom.class);
-                    intent.putExtra("numBedroom", (String) getChild(i, i1));
-                    context.startActivity(intent);
-                }
-                //The sublist of Glasshouse is selected
-                else if (getGroup(i).equals(context.getResources().getString(R.string.glassHouse))) {
-                    //Pass the text of textView being clicked to the new activity
-                    Intent intent = new Intent(context, GlasshouseByBedroom.class);
-                    intent.putExtra("numBedroom", (String) getChild(i, i1));
-                    context.startActivity(intent);
-                }
-            }
-        });
+//                }
+//                //The sublist of Lodge is selected
+//                else if (getGroup(i).equals(context.getResources().getString(R.string.lodge))){
+//                    //Pass the text of textView being clicked to the new activity
+//                    Intent intent = new Intent(context, LodgeByBedroom.class);
+//                    intent.putExtra("numBedroom", (String) getChild(i, i1));
+//                    context.startActivity(intent);
+//                }
+//                //The sublist of RayWhite is selected
+//                else if (getGroup(i).equals(context.getResources().getString(R.string.rayWhite))){
+//                    //Pass the text of textView being clicked to the new activity
+//                    Intent intent = new Intent(context, RayWhiteByBedroom.class);
+//                    intent.putExtra("numBedroom", (String) getChild(i, i1));
+//                    context.startActivity(intent);
+//                }
+//                //The sublist of EVES is selected
+//                else if (getGroup(i).equals(context.getResources().getString(R.string.eves))) {
+//                    //Pass the text of textView being clicked to the new activity
+//                    Intent intent = new Intent(context, EvesByBedroom.class);
+//                    intent.putExtra("numBedroom", (String) getChild(i, i1));
+//                    context.startActivity(intent);
+//                }
+//                //The sublist of Glasshouse is selected
+//                else if (getGroup(i).equals(context.getResources().getString(R.string.glassHouse))) {
+//                    //Pass the text of textView being clicked to the new activity
+//                    Intent intent = new Intent(context, GlasshouseByBedroom.class);
+//                    intent.putExtra("numBedroom", (String) getChild(i, i1));
+//                    context.startActivity(intent);
+//                }
+//            }
+//        });
         return view;
     }
 

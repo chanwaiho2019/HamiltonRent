@@ -56,15 +56,65 @@
         android:textColor="@android:color/black"
         android:textSize="12sp" />
 
-    <TextView
-        android:id="@+id/textViewRooms"
+    <!--<TextView-->
+        <!--android:id="@+id/textViewRooms"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:paddingLeft="5sp"-->
+        <!--android:paddingRight="5sp"-->
+        <!--android:paddingBottom="5sp"-->
+        <!--android:textColor="@android:color/black"-->
+        <!--android:textSize="12sp" />-->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="5sp"
-        android:paddingRight="5sp"
-        android:paddingBottom="5sp"
-        android:textColor="@android:color/black"
-        android:textSize="12sp" />
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageViewBedroom"
+            android:contentDescription="@string/bedroom"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/bedroom" />
+
+        <TextView
+            android:id="@+id/textViewBedroom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@android:color/black" />
+
+        <ImageView
+            android:id="@+id/imageViewBathroom"
+            android:contentDescription="@string/bathroom"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/bathroom" />
+
+        <TextView
+            android:id="@+id/textViewBathroom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@android:color/black" />
+
+        <ImageView
+            android:id="@+id/imageViewCarSpace"
+            android:contentDescription="@string/carSpace"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/carspace" />
+
+        <TextView
+            android:id="@+id/textViewCarSpace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:layout_weight="1" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textViewLink"

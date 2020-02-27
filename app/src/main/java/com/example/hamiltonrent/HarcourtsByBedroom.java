@@ -41,7 +41,7 @@ public class HarcourtsByBedroom extends AppCompatActivity {
         //Set title of activity
         setTitle("Harcourts " + "(" + numBedroom + ")");
 
-        //Initialize the textView object
+        //Initialize the listView object
         listViewProperty = findViewById(R.id.listViewPropertyHarcourts);
 
         //Execute the scraping process

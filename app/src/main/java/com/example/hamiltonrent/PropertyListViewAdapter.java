@@ -38,9 +38,9 @@ public class PropertyListViewAdapter extends ArrayAdapter<Property> {
         viewHolder.title.setText(getItem(position).getTitle());
         viewHolder.address.setText(getItem(position).getAddress());
         viewHolder.rent.setText("$" + getItem(position).getRent() + " p.w.");
-        viewHolder.rooms.setText("Bedrooms: " + getItem(position).getNumBedroom()
-                + "     Bathrooms: " + getItem(position).getNumBathroom()
-                + "     Car space: " + getItem(position).getNumCarSpace());
+        viewHolder.bedroom.setText(Integer.toString(getItem(position).getNumBedroom()));
+        viewHolder.bathroom.setText(Integer.toString(getItem(position).getNumBathroom()));
+        viewHolder.carSpace.setText(Integer.toString(getItem(position).getNumCarSpace()));
         viewHolder.link.setText(getItem(position).getlink());
 
         return view;
@@ -53,7 +53,9 @@ public class PropertyListViewAdapter extends ArrayAdapter<Property> {
         public TextView title;
         public TextView address;
         public TextView rent;
-        public TextView rooms;
+        public TextView bedroom;
+        public TextView bathroom;
+        public TextView carSpace;
         public TextView link;
 
         public void setView(View view) {
@@ -62,7 +64,9 @@ public class PropertyListViewAdapter extends ArrayAdapter<Property> {
             title = view.findViewById(R.id.textViewTitle);
             address = view.findViewById(R.id.textViewAddress);
             rent = view.findViewById(R.id.textViewRent);
-            rooms = view.findViewById(R.id.textViewRooms);
+            bedroom = view.findViewById(R.id.textViewBedroom);
+            bathroom = view.findViewById(R.id.textViewBathroom);
+            carSpace = view.findViewById(R.id.textViewCarSpace);
             link = view.findViewById(R.id.textViewLink);
             //Set the link inside the TextView clickable and open it in browser
             link.setMovementMethod(LinkMovementMethod.getInstance());
