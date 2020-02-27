@@ -19,7 +19,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static int SPLASH_TIME_OUT = 65000;
+    //private static int SPLASH_TIME_OUT = 65000;
+    private static int SPLASH_TIME_OUT = 8000;
     private HarcourtsWebScraper harcourtsWebScraper;
     private WaikatoREWebScraper waikatoREWebScraper;
     private LodgeWebScraper lodgeWebScraper;
@@ -81,8 +82,8 @@ public class MainActivity extends AppCompatActivity {
                 harcourtsWebScraper = new HarcourtsWebScraper();
                 List<Property> listHarcourts = harcourtsWebScraper.getHamiltonRentResidentialData();
 
-                waikatoREWebScraper = new WaikatoREWebScraper();
-                List<Property> listWaikatoRE = waikatoREWebScraper.getHamiltonRentResidentialData();
+//                waikatoREWebScraper = new WaikatoREWebScraper();
+//                List<Property> listWaikatoRE = waikatoREWebScraper.getHamiltonRentResidentialData();
 
                 lodgeWebScraper = new LodgeWebScraper();
                 List<Property> listLodge = lodgeWebScraper.getHamiltonRentResidentialData();
@@ -98,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
 
                 //Combine all the lists into one list
                 allProperties.addAll(listHarcourts);
-                allProperties.addAll(listWaikatoRE);
+//                allProperties.addAll(listWaikatoRE);
                 allProperties.addAll(listLodge);
                 allProperties.addAll(listRayWhite);
                 allProperties.addAll(listEves);
