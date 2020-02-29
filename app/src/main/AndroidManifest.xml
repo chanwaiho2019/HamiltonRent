@@ -13,12 +13,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".HomePage"></activity>
         <activity android:name=".PropertiesBySuburb" />
-        <activity android:name=".GlasshouseByBedroom" />
-        <activity android:name=".EvesByBedroom" />
-        <activity android:name=".RayWhiteByBedroom" />
-        <activity android:name=".LodgeByBedroom" />
-        <activity android:name=".WaikatoREByBedroom" />
-        <activity android:name=".HarcourtsByBedroom" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
