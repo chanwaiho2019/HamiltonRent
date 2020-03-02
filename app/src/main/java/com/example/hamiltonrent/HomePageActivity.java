@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class HomePage extends AppCompatActivity {
+public class HomePageActivity extends AppCompatActivity {
 
     private ExpandableListView expandableListView;
     private ExpandableListAdapter expandableListAdapter;

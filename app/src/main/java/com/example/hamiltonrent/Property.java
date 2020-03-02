@@ -2,7 +2,7 @@ package com.example.hamiltonrent;
 
 public class Property {
 
-    private  String imageURL;
+    private String imageURL;
     private String title;
     private String address;
     private float rent;
